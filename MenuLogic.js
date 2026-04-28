@@ -15,7 +15,69 @@ class Storage{
 
     constructor(){
         this.skins = [];
-        this._populate();
+        if (!this._load()) {
+            this._populate();
+            this._save();
+        }
+    }
+
+    removeSkin(index){
+        this.skins.splice(index,1);
+        this._save();
+    }
+
+    /*clearStorage(){
+        this.skins = [];
+        this._save();
+        localStorage.removeItem("playerStorage");
+    }*/
+
+    addSkin(skin){
+        this.skins.push(
+            new Skin(
+                skin.skinName,
+                skin.floatVal,
+                skin.price,
+                new Weapon(skin.weaponName, skin.weapon),
+                skin.image || skin.img
+            )
+        );
+        this._save();
+    }
+
+    _load(){
+        const saved = localStorage.getItem("playerStorage");
+        if (!saved) return false;
+
+        try {
+            const list = JSON.parse(saved);
+            if (!Array.isArray(list)) return false;
+
+            this.skins = list.map(item => new Skin(
+                item.skinName,
+                item.floatVal,
+                item.price,
+                new Weapon(item.weaponName, item.weapon),
+                item.image || item.img
+            ));
+            return true;
+        } catch (error) {
+            console.error("Failed to load player storage:", error);
+            return false;
+        }
+    }
+
+    _save(){
+        const data = this.skins.map(skin => ({
+            skinName: skin.getSkinName(),
+            floatVal: skin.getFloat(),
+            price: skin.getPrice(),
+            weaponName: skin.getWeapon().getName(),
+            weapon: skin.getWeapon().getType(),
+            image: skin.getImage()
+        }));
+
+        localStorage.setItem("playerStorage", JSON.stringify(data));
     }
 
     _populate(){
@@ -25,6 +87,7 @@ class Storage{
                 "images/ak47_ruby.png")
         );
 
+        
         this.skins.push(
             new Skin("EmeraldGreen", 0.123, 4500, 
                 new Weapon("M4A1","Gun"), 
@@ -40,6 +103,12 @@ class Storage{
 
     getGunSkins(){ 
         return this.skins.filter(skin => skin.getWeapon().getType() === "Gun"); 
+    }
+    getKnifeSkins(){ 
+        return this.skins.filter(skin => skin.getWeapon().getType() === "Knife"); 
+    }
+    getGloveSkins(){ 
+        return this.skins.filter(skin => skin.getWeapon().getType() === "Glove"); 
     }
 }
 
