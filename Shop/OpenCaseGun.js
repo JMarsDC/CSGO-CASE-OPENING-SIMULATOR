@@ -5,7 +5,7 @@ var items = {
         price: 2000,
         weaponName: "M4A1-S",
         weapon: "Gun",
-		img: "../images/m4a1_emerald.png"
+		img: "images/m4a1_emerald.png"
 	},
 	middle: {
 		skinName: "Chantico's Fire",
@@ -13,7 +13,7 @@ var items = {
         price: 2600,
         weaponName: "M4A1-S",
         weapon: "Gun",
-		img: "../images/m4a1_emerald.png"
+		img: "images/m4a1_emerald.png"
 	},
 	super: {
 		skinName: "Asiimov",
@@ -21,7 +21,7 @@ var items = {
         price: 3000,
         weaponName: "M4A4",
         weapon: "Gun",
-		img: "../images/m4a1_emerald.png"
+		img: "images/m4a1_emerald.png"
 	}
 };
 function generate(ng) {
@@ -31,12 +31,12 @@ function generate(ng) {
 	}, 10).html('');
 
 	for(var i = 0;i < 101; i++) {
-		var element = '<div id="CardNumber'+i+'" class="item class_red_item" style="background-image:url('+items.simple.img+');"></div>';
+		var element = '<div id="CardNumber'+i+'" class="item class_red_item" style="background-image:url('+"../"+items.simple.img+');"></div>';
 		var randed = randomInt(1,1000);
 		if(randed < 50) {
-			element = '<div id="CardNumber'+i+'" class="item class_red_item" style="background-image:url('+items.super.img+');"></div>';
+			element = '<div id="CardNumber'+i+'" class="item class_red_item" style="background-image:url('+"../"+items.super.img+');"></div>';
 		} else if(500 < randed) {
-			element = '<div id="CardNumber'+i+'" class="item class_red_item" style="background-image:url('+items.middle.img+');"></div>';
+			element = '<div id="CardNumber'+i+'" class="item class_red_item" style="background-image:url('+"../"+items.middle.img+');"></div>';
 		}
 		$(element).appendTo('.raffle-roller-container');
 	}
@@ -65,13 +65,13 @@ function goRoll(skin, skinimg, reward) {
 		transition: "all 8s cubic-bezier(.08,.6,0,1)"
 	});
 	$('#CardNumber78').css({
-		"background-image": "url("+skinimg+")"
+		"background-image": "url("+"../"+skinimg+")"
 	});
 
 	setTimeout(function() {
 		$('#CardNumber78').addClass('winning-item');
 		$('#rolled').html(skin);
-		var win_element = "<div class='item class_red_item' style='background-image: url("+skinimg+")'></div>";
+		var win_element = "<div class='item class_red_item' style='background-image: url("+"../"+skinimg+")'></div>";
 		$(win_element).appendTo('.inventory');
 
         player.getStorage().addSkin(reward)
