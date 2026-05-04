@@ -16,13 +16,17 @@
 </div>
 <center><span style="font-size: 25px;">You winning is <span style="color: green;" id="rolled">rolling</span>
 <br>
-<button onclick="generate(1);">go</button>
+<button onclick="generate();">go</button>
 <button onclick="window.location='';">reset</button></center>
 <br>
 <div class="inventory"></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../MenuLogic.js"></script>
 <script src="../UserInfo.js"></script>
-<script src="OpenCaseGun.js"></script>
+<script src="Case.js"></script>
+<script src="OpenCaseLogic.js"></script>
+<script>
+    setCase(new Revolution())
+</script>
 </body>
 </html>
