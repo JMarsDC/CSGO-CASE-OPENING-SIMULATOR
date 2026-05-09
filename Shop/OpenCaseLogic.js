@@ -8,9 +8,6 @@ function setCase(caseObj) {
     currentCase = caseObj
 }
 
-function openCase(caseObj) {
-    setCase(caseObj)
-}
 
 function generate() {
 	$('.raffle-roller-container').css({
@@ -22,6 +19,14 @@ function generate() {
 		console.error('No case set for OpenCaseLogic')
 		return
 	}
+
+	if(!(player.getStorage().hasCase(currentCase.getName()))){
+		alert(`You dont have any ${currentCase.getName()}`);
+		return;
+	}
+
+	//decrements the case counter
+	player.getStorage().setCounter(currentCase.getName());
 
 	const allItems = Object.values(currentCase.items)
 	const defaultImg = allItems[0]?.img || ''

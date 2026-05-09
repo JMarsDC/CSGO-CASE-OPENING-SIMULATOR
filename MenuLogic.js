@@ -15,10 +15,35 @@ class Storage{
 
     constructor(){
         this.skins = [];
+        this.cases = {
+            Kilowatt: 1,
+            Revolution: 1,
+            DreamsNightmare: 1,
+            Knife: 1,
+            Glove: 1
+        };
+        
         if (!this._load()) {
             this._populate();
             this._save();
         }
+    }
+
+    addCase(caseName, amount=1){
+        this.cases[caseName] += amount;
+    }
+
+    hasCase(caseName){
+        return this.cases[caseName] > 0;
+    }
+
+    getCounter(caseName){
+        return this.cases[caseName];
+    }
+
+    setCounter(caseName){
+        this.cases[caseName]--;
+        this._save();
     }
 
     removeSkin(index){
@@ -50,16 +75,17 @@ class Storage{
         if (!saved) return false;
 
         try {
-            const list = JSON.parse(saved);
-            if (!Array.isArray(list)) return false;
-
-            this.skins = list.map(item => new Skin(
+            const data = JSON.parse(saved);
+            
+            this.skins = data.skins.map(item => new Skin(
                 item.skinName,
                 item.floatVal,
                 item.price,
                 new Weapon(item.weaponName, item.weapon),
                 item.image || item.img
             ));
+            
+            this.cases = data.cases;
             return true;
         } catch (error) {
             console.error("Failed to load player storage:", error);
@@ -68,14 +94,17 @@ class Storage{
     }
 
     _save(){
-        const data = this.skins.map(skin => ({
-            skinName: skin.getSkinName(),
-            floatVal: skin.getFloat(),
-            price: skin.getPrice(),
-            weaponName: skin.getWeapon().getName(),
-            weapon: skin.getWeapon().getType(),
-            image: skin.getImage()
-        }));
+        const data = {
+            skins: this.skins.map(skin => ({
+                skinName: skin.getSkinName(),
+                floatVal: skin.getFloat(),
+                price: skin.getPrice(),
+                weaponName: skin.getWeapon().getName(),
+                weapon: skin.getWeapon().getType(),
+                image: skin.getImage()
+            })),
+            cases: this.cases
+        };
 
         localStorage.setItem("playerStorage", JSON.stringify(data));
     }
@@ -130,10 +159,6 @@ class Skin{
     getImage(){return this.image;}
     getWeapon(){return this.weapon;}
 
-    //The abstract method
-    printWeapon(){
-        throw new Error("printWeapon() must be implemented by subclass.");
-    }
 }
 
 class Weapon{

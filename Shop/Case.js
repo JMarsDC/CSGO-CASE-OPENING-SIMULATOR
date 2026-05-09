@@ -11,6 +11,10 @@ class Case{
         throw new Error("rollItem() must be implemented by subclass");
     }
 
+    getName(){
+        return this.name;
+    }
+
     randomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
     }
@@ -112,5 +116,150 @@ class Revolution extends Case {
         if (chance <= 60) return this.items.classified;
         if (chance <= 210) return this.items.restricted;
         return this.items.milspec;
+    }
+}
+
+class DreamsAndNightmares extends Case{
+    constructor() {
+    super("Dreams & Nightmares", {
+        covert: {
+            skinName: "Night Terror",
+            floatVal: 0.0028,
+            price: 3400,
+            weaponName: "AK-47",
+            weapon: "Gun",
+            img: ""
+        },
+        classified: {
+            skinName: "Phantom Pulse",
+            floatVal: 0.0165,
+            price: 880,
+            weaponName: "USP-S",
+            weapon: "Gun",
+            img: ""
+        },
+        restricted: {
+            skinName: "Dream Glade",
+            floatVal: 0.079,
+            price: 240,
+            weaponName: "M4A1-S",
+            weapon: "Gun",
+            img: ""
+        },
+        milspec: {
+            skinName: "Sleep Paralysis",
+            floatVal: 0.25,
+            price: 50,
+            weaponName: "P90",
+            weapon: "Gun",
+            img: ""
+        }
+    }, 30, "weapon_case");
+}
+
+rollItem() {
+    const chance = randomInt(1, 1000);
+
+    if (chance <= 8) return this.items.covert;        // rarer covert
+    if (chance <= 45) return this.items.classified;
+    if (chance <= 180) return this.items.restricted;
+    return this.items.milspec;
+}
+
+}
+
+class KnifeCase extends Case {
+    constructor() {
+        super("Knife Case", {
+            covert: {
+                skinName: "Karambit | Fade",
+                floatVal: 0.01,
+                price: 12000,
+                weaponName: "Karambit",
+                weapon: "Knife",
+                img: ""
+            },
+            classified: {
+                skinName: "M9 Bayonet | Slaughter",
+                floatVal: 0.03,
+                price: 8000,
+                weaponName: "M9 Bayonet",
+                weapon: "Knife",
+                img: ""
+            },
+            restricted: {
+                skinName: "Butterfly Knife | Case Hardened",
+                floatVal: 0.12,
+                price: 5000,
+                weaponName: "Butterfly Knife",
+                weapon: "Knife",
+                img: ""
+            },
+            milspec: {
+                skinName: "Gut Knife | Safari Mesh",
+                floatVal: 0.35,
+                price: 1500,
+                weaponName: "Gut Knife",
+                weapon: "Knife",
+                img: ""
+            }
+        }, 100, "knife_case"); // higher price
+    }
+
+    rollItem() {
+        const chance = randomInt(1, 1000);
+
+        if (chance <= 5) return this.items.covert;       // 0.5%
+        if (chance <= 25) return this.items.classified;  // 2%
+        if (chance <= 120) return this.items.restricted; // 9.5%
+        return this.items.milspec;                       // 88%
+    }
+}
+
+class GloveCase extends Case {
+    constructor() {
+        super("Glove Case", {
+            covert: {
+                skinName: "Sport Gloves | Pandora's Box",
+                floatVal: 0.02,
+                price: 15000,
+                weaponName: "Sport Gloves",
+                weapon: "Glove",
+                img: ""
+            },
+            classified: {
+                skinName: "Specialist Gloves | Crimson Kimono",
+                floatVal: 0.05,
+                price: 9000,
+                weaponName: "Specialist Gloves",
+                weapon: "Glove",
+                img: ""
+            },
+            restricted: {
+                skinName: "Driver Gloves | Overtake",
+                floatVal: 0.15,
+                price: 4000,
+                weaponName: "Driver Gloves",
+                weapon: "Glove",
+                img: ""
+            },
+            milspec: {
+                skinName: "Hand Wraps | Leather",
+                floatVal: 0.30,
+                price: 1200,
+                weaponName: "Hand Wraps",
+                weapon: "Glove",
+                img: ""
+            }
+        }, 100, "glove_case");
+    }
+
+    rollItem() {
+        const chance = randomInt(1, 1000);
+
+        if (chance <= 7) return this.items.covert;       // 0.7%
+        if (chance <= 35) return this.items.classified;  // 2.8%
+        if (chance <= 150) return this.items.restricted; // 11.5%
+        return this.items.milspec;                       // ~85%
     }
 }

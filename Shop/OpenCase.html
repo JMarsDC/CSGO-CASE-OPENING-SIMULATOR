@@ -7,8 +7,41 @@
     <link rel="stylesheet" href="">
 </head>
 <body>
-<a href="OpenKilowattCase.html"><button> Kilowatt Case <br> <!-- Put counter here how many cases-->∞ </button></a>
-<a href="OpenRevolutionCase.html"><button> Revolution Case <br> ∞ </button></a>
-<a href="../SkinStorage/GunSkins.html"><button> Dreams & Nightmares Case <br> ∞ </button></a>
+
+<button id="KilowattBtn" onclick="
+    openCasePage('OpenKilowattCase.html', 'KilowattBtn', 'KilowattCount','Kilowatt')">
+    Kilowatt Case <br>
+    <span id="KilowattCount">0</span>
+</button>
+
+<button id="RevolutionBtn" onclick="
+openCasePage('OpenRevolutionCase.html', 'RevolutionBtn', 'RevolutionCount', 'Revolution')">
+    Revolution Case <br>
+    <span id="RevolutionCount">0</span>
+</button>
+
+<button id="DreamsAndNightmaresBtn" onclick="
+openCasePage('OpenDreamsAndNightmaresCase.html', 'DreamsAndNightmaresBtn', 'DreamsAndNightmaresCount', 'DreamsAndNightmares')">
+    Dreams & Nightmares Case <br>
+    <span id="DreamsAndNightmaresCount">0</span>
+</button>
+
+<br><br>
+
+<button id="KnifeBtn" onclick="
+openCasePage('OpenKnifeCase.html', 'KnifeBtn', 'KnifeCount', 'Knife')">
+    Knife Case <br>
+    <span id="KnifeCount">0</span>
+</button>
+
+<button id="GloveBtn" onclick="
+openCasePage('OpenGloveCase.html', 'GloveBtn', 'GloveCount', 'Glove')">
+    Glove Case <br>
+    <span id="GloveCount">0</span>
+</button>
+
+<script src="OpenCasePage.js"></script>
+<script src="../MenuLogic.js"></script>
+<script src="../UserInfo.js"></script>
 </body>
 </html>
