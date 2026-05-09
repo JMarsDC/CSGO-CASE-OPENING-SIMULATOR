@@ -28,7 +28,7 @@ function generate() {
 	//decrements the case counter
 	player.getStorage().setCounter(currentCase.getName());
 
-	const allItems = Object.values(currentCase.items)
+	const allItems = Object.values(currentCase.getItems())
 	const defaultImg = allItems[0]?.img || ''
 
 	for (var i = 0; i < 101; i++) {

@@ -1,9 +1,13 @@
 class Case{
+    #name;
+    #items;
+    #price;
+    #caseType;
     constructor(name,items,price,caseType){
-        this.name = name;
-        this.items = items;
-        this.price = price;
-        this.caseType = caseType;
+        this.#name = name;
+        this.#items = items;
+        this.#price = price;
+        this.#caseType = caseType;
     }
 
     //abstract
@@ -12,21 +16,42 @@ class Case{
     }
 
     getName(){
-        return this.name;
+        return this.#name;
     }
 
-    randomInt(min, max) {
+    getPrice(){
+        return this.#price;
+    }
+
+    getCaseType(){
+        return this.#caseType;
+    }
+
+    getItems(){
+        return this.#items;
+    }
+
+    #randomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    _randomInt(min,max){
+        return this.#randomInt(min,max);
+    }
+
+    _getItems(){
+        return this.#items;
     }
 
 }
 
 class Kilowatt extends Case{
     constructor(){
+
         super("Kilowatt",{
     covert: {
         skinName: "Inheritance",
-        floatVal: 0.00045,
+        floatVal: Math.pow(Math.random(), 2),
         price: 3200,
         weaponName: "AK-47",
         weapon: "Gun",
@@ -34,7 +59,7 @@ class Kilowatt extends Case{
     },
     classified: {
         skinName: "Chrome Cannon",
-        floatVal: 0.0123,
+        floatVal: Math.pow(Math.random(), 2),
         price: 900,
         weaponName: "AWP",
         weapon: "Gun",
@@ -42,7 +67,7 @@ class Kilowatt extends Case{
     },
     restricted: {
         skinName: "Black Lotus",
-        floatVal: 0.087,
+        floatVal: Math.pow(Math.random(), 2),
         price: 250,
         weaponName: "M4A1-S",
         weapon: "Gun",
@@ -50,7 +75,7 @@ class Kilowatt extends Case{
     },
     milspec: {
         skinName: "Just Smile",
-        floatVal: 0.23,
+        floatVal: Math.pow(Math.random(), 2),
         price: 45,
         weaponName: "MP7",
         weapon: "Gun",
@@ -60,12 +85,13 @@ class Kilowatt extends Case{
     }
 
     rollItem() {
-        const chance = this.randomInt(1, 1000);
+        const chance = this._randomInt(1, 1000);
+        const items = this._getItems();
 
-        if (chance <= 10) return this.items.covert;
-        if (chance <= 50) return this.items.classified;
-        if (chance <= 200) return this.items.restricted;
-        return this.items.milspec;
+        if (chance <= 10) return items.covert;
+        if (chance <= 50) return items.classified;
+        if (chance <= 200) return items.restricted;
+        return items.milspec;
     }
 
 }
@@ -76,7 +102,7 @@ class Revolution extends Case {
         super("Revolution", {
             covert: {
                 skinName: "Printstream",
-                floatVal: 0.0031,
+                floatVal: Math.pow(Math.random(), 2),
                 price: 3100,
                 weaponName: "AK-47",
                 weapon: "Gun",
@@ -84,7 +110,7 @@ class Revolution extends Case {
             },
             classified: {
                 skinName: "Wildfire Protocol",
-                floatVal: 0.0142,
+                floatVal: Math.pow(Math.random(), 2),
                 price: 950,
                 weaponName: "Desert Eagle",
                 weapon: "Gun",
@@ -92,7 +118,7 @@ class Revolution extends Case {
             },
             restricted: {
                 skinName: "Circuit Breaker",
-                floatVal: 0.081,
+                floatVal: Math.pow(Math.random(), 2),
                 price: 260,
                 weaponName: "M4A1-S",
                 weapon: "Gun",
@@ -100,7 +126,7 @@ class Revolution extends Case {
             },
             milspec: {
                 skinName: "Reboot",
-                floatVal: 0.21,
+                floatVal: Math.pow(Math.random(), 2),
                 price: 55,
                 weaponName: "MP9",
                 weapon: "Gun",
@@ -110,21 +136,22 @@ class Revolution extends Case {
     }
 
     rollItem() {
-        const chance = randomInt(1, 1000);
+        const chance = this._randomInt(1, 1000);
+        const items = this._getItems();
 
-        if (chance <= 12) return this.items.covert;
-        if (chance <= 60) return this.items.classified;
-        if (chance <= 210) return this.items.restricted;
-        return this.items.milspec;
+        if (chance <= 12) return items.covert;
+        if (chance <= 60) return items.classified;
+        if (chance <= 210) return items.restricted;
+        return items.milspec;
     }
 }
 
 class DreamsAndNightmares extends Case{
     constructor() {
-    super("Dreams & Nightmares", {
+    super("DreamsNightmare", {
         covert: {
             skinName: "Night Terror",
-            floatVal: 0.0028,
+            floatVal: Math.pow(Math.random(), 2),
             price: 3400,
             weaponName: "AK-47",
             weapon: "Gun",
@@ -132,7 +159,7 @@ class DreamsAndNightmares extends Case{
         },
         classified: {
             skinName: "Phantom Pulse",
-            floatVal: 0.0165,
+            floatVal: Math.pow(Math.random(), 2),
             price: 880,
             weaponName: "USP-S",
             weapon: "Gun",
@@ -140,7 +167,7 @@ class DreamsAndNightmares extends Case{
         },
         restricted: {
             skinName: "Dream Glade",
-            floatVal: 0.079,
+            floatVal: Math.pow(Math.random(), 2),
             price: 240,
             weaponName: "M4A1-S",
             weapon: "Gun",
@@ -148,7 +175,7 @@ class DreamsAndNightmares extends Case{
         },
         milspec: {
             skinName: "Sleep Paralysis",
-            floatVal: 0.25,
+            floatVal: Math.pow(Math.random(), 2),
             price: 50,
             weaponName: "P90",
             weapon: "Gun",
@@ -158,22 +185,23 @@ class DreamsAndNightmares extends Case{
 }
 
 rollItem() {
-    const chance = randomInt(1, 1000);
+    const chance = this._randomInt(1, 1000);
+    const items = this._getItems();
 
-    if (chance <= 8) return this.items.covert;        // rarer covert
-    if (chance <= 45) return this.items.classified;
-    if (chance <= 180) return this.items.restricted;
-    return this.items.milspec;
+    if (chance <= 8) return items.covert;        // rarer covert
+    if (chance <= 45) return items.classified;
+    if (chance <= 180) return items.restricted;
+    return items.milspec;
 }
 
 }
 
 class KnifeCase extends Case {
     constructor() {
-        super("Knife Case", {
+        super("Knife", {
             covert: {
                 skinName: "Karambit | Fade",
-                floatVal: 0.01,
+                floatVal: Math.pow(Math.random(), 2),
                 price: 12000,
                 weaponName: "Karambit",
                 weapon: "Knife",
@@ -181,7 +209,7 @@ class KnifeCase extends Case {
             },
             classified: {
                 skinName: "M9 Bayonet | Slaughter",
-                floatVal: 0.03,
+                floatVal: Math.pow(Math.random(), 2),
                 price: 8000,
                 weaponName: "M9 Bayonet",
                 weapon: "Knife",
@@ -189,7 +217,7 @@ class KnifeCase extends Case {
             },
             restricted: {
                 skinName: "Butterfly Knife | Case Hardened",
-                floatVal: 0.12,
+                floatVal: Math.pow(Math.random(), 2),
                 price: 5000,
                 weaponName: "Butterfly Knife",
                 weapon: "Knife",
@@ -197,7 +225,7 @@ class KnifeCase extends Case {
             },
             milspec: {
                 skinName: "Gut Knife | Safari Mesh",
-                floatVal: 0.35,
+                floatVal: Math.pow(Math.random(), 2),
                 price: 1500,
                 weaponName: "Gut Knife",
                 weapon: "Knife",
@@ -207,21 +235,22 @@ class KnifeCase extends Case {
     }
 
     rollItem() {
-        const chance = randomInt(1, 1000);
+        const chance = this._randomInt(1, 1000);
+        const items = this._getItems();
 
-        if (chance <= 5) return this.items.covert;       // 0.5%
-        if (chance <= 25) return this.items.classified;  // 2%
-        if (chance <= 120) return this.items.restricted; // 9.5%
-        return this.items.milspec;                       // 88%
+        if (chance <= 5) return items.covert;       // 0.5%
+        if (chance <= 25) return items.classified;  // 2%
+        if (chance <= 120) return items.restricted; // 9.5%
+        return items.milspec;                       // 88%
     }
 }
 
 class GloveCase extends Case {
     constructor() {
-        super("Glove Case", {
+        super("Glove", {
             covert: {
                 skinName: "Sport Gloves | Pandora's Box",
-                floatVal: 0.02,
+                floatVal: Math.pow(Math.random(), 2),
                 price: 15000,
                 weaponName: "Sport Gloves",
                 weapon: "Glove",
@@ -229,7 +258,7 @@ class GloveCase extends Case {
             },
             classified: {
                 skinName: "Specialist Gloves | Crimson Kimono",
-                floatVal: 0.05,
+                floatVal: Math.pow(Math.random(), 2),
                 price: 9000,
                 weaponName: "Specialist Gloves",
                 weapon: "Glove",
@@ -237,7 +266,7 @@ class GloveCase extends Case {
             },
             restricted: {
                 skinName: "Driver Gloves | Overtake",
-                floatVal: 0.15,
+                floatVal: Math.pow(Math.random(), 2),
                 price: 4000,
                 weaponName: "Driver Gloves",
                 weapon: "Glove",
@@ -245,7 +274,7 @@ class GloveCase extends Case {
             },
             milspec: {
                 skinName: "Hand Wraps | Leather",
-                floatVal: 0.30,
+                floatVal: Math.pow(Math.random(), 2),
                 price: 1200,
                 weaponName: "Hand Wraps",
                 weapon: "Glove",
@@ -255,11 +284,12 @@ class GloveCase extends Case {
     }
 
     rollItem() {
-        const chance = randomInt(1, 1000);
+        const chance = this._randomInt(1, 1000);
+        const items = this._getItems();
 
-        if (chance <= 7) return this.items.covert;       // 0.7%
-        if (chance <= 35) return this.items.classified;  // 2.8%
-        if (chance <= 150) return this.items.restricted; // 11.5%
-        return this.items.milspec;                       // ~85%
+        if (chance <= 7) return items.covert;       // 0.7%
+        if (chance <= 35) return items.classified;  // 2.8%
+        if (chance <= 150) return items.restricted; // 11.5%
+        return items.milspec;                       // ~85%
     }
 }

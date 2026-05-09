@@ -2,25 +2,24 @@ document.addEventListener('DOMContentLoaded', function() {
     updateAllCounters();
 });
 
+const counters = {
+    Kilowatt: document.getElementById('KilowattCount'),
+    Revolution: document.getElementById('RevolutionCount'),
+    DreamsNightmare: document.getElementById('DreamsAndNightmaresCount'),
+    Knife: document.getElementById('KnifeCount'),
+    Glove: document.getElementById('GloveCount')
+};
+
 function updateAllCounters() {
-    document.getElementById('KilowattCount').textContent = 
-    player.getStorage().getCounter('Kilowatt');
+    const storage = player.getStorage();
 
-    document.getElementById('RevolutionCount').textContent = 
-    player.getStorage().getCounter('Revolution');
-    
-    document.getElementById('DreamsAndNightmaresCount').textContent = 
-    player.getStorage().getCounter('DreamsNightmare');
-
-    document.getElementById('KnifeCount').textContent = 
-    player.getStorage().getCounter('Knife');
-
-    document.getElementById('GloveCount').textContent = 
-    player.getStorage().getCounter('Glove');
+    for (const key in counters) {
+        counters[key].textContent = storage.getCounter(key);
+    }
 }
 
 function openCasePage(page,caseBtn,caseCount,currentCase) {
-    const button = document.getElementById(caseBtn);
+    // const button = document.getElementById(caseBtn);
     const countText = document.getElementById(caseCount);
 
     countText.textContent = player.getStorage().getCounter(currentCase);
