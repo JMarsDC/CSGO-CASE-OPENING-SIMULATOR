@@ -27,6 +27,6 @@ if (registerForm) {
         player.save();
         player.getStorage().save();
 
-        window.location.href = 'TitleScreen.html';
+        window.location.href = 'Menu.html';
     });
 }

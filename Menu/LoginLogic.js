@@ -20,6 +20,6 @@ if (loginForm) {
         }
 
         localStorage.setItem('currentUser', username);
-        window.location.href = 'TitleScreen.html';
+        window.location.href = 'Menu.html';
     });
 }

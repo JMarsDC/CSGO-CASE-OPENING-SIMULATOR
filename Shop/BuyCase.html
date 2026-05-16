@@ -44,7 +44,7 @@ const SHOP_CASES = [
 ];
 
 function updateBalanceDisplay() {
-    document.getElementById('balanceDisplay').textContent = '$' + player.getStorage().getBalance().toLocaleString();
+    document.getElementById('balanceDisplay').textContent = '$' + player.getBalance().toLocaleString();
 }
 
 let toastTimer;
@@ -67,14 +67,14 @@ function buyCase(index) {
     const caseItem = SHOP_CASES[index];
     const total = caseItem.price * quantity;
     const storage = player.getStorage();
-    const balance = storage.getBalance();
+    const balance = player.getBalance();
 
     if (balance < total) {
         showToast(`Need $${total.toLocaleString()} — only $${balance.toLocaleString()} available`, 'err');
         return;
     }
 
-    storage.deductBalance(total);
+    player.deductBalance(total);
 
     for (let i = 0; i < quantity; i++) {
         storage.addCase(caseItem.caseID);

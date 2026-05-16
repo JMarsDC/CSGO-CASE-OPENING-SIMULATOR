@@ -65,7 +65,7 @@ class Player{
     getBalance() {return this.#balance;}
     getStorage() {return this.#inventory;}
     deductBalance(amount) {this.#balance -= amount; this._save();}
-    addBalance(amount) {this.#balance += amount;}
+    addBalance(amount) {this.#balance += amount; this._save();}
 }
 
 class Storage{
@@ -203,6 +203,19 @@ class Storage{
     getGloveSkins(){ 
         return this.#skins.filter(skin => skin.getWeapon().getType() === "Glove"); 
     }
+    getSkins() {
+    return this.#skins.map(skin => ({
+        skinName:   skin.getSkinName(),
+        floatVal:   skin.getFloat(),
+        price:      skin.getPrice(),
+        weaponName: skin.getWeapon().getName(),
+        weapon:     skin.getWeapon().getType(),
+        img:        skin.getImage(),
+        rarity:     'milspec'
+    }));
+}
+
+getCases() { return this.#cases; }
 }
 
 
