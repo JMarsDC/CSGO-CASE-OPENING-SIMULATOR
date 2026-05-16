@@ -1,0 +1,390 @@
+ :root {
+            --bg:          #0a0c0f;
+            --panel:       #111318;
+            --panel2:      #181c24;
+            --border:      #1e2330;
+            --border-lit:  #2e3550;
+            --green:       #39ff8a;
+            --green-dim:   rgba(57,255,138,.1);
+            --green-glow:  rgba(57,255,138,.25);
+            --red:         #ff4a6b;
+            --red-dim:     rgba(255,74,107,.1);
+            --gold:        #ffc84a;
+            --text:        #b8c4d8;
+            --text-bright: #dce8f8;
+            --muted:       #454e68;
+            --covert:      #eb4b4b;
+            --classified:  #d32ce6;
+            --restricted:  #4b69ff;
+            --milspec:     #5e98d9;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Oxanium', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::after {
+            content: '';
+            position: fixed; inset: 0;
+            background: repeating-linear-gradient(
+                0deg, transparent, transparent 2px,
+                rgba(0,0,0,.07) 2px, rgba(0,0,0,.07) 4px
+            );
+            pointer-events: none; z-index: 9999;
+        }
+
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image:
+                linear-gradient(rgba(57,255,138,.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(57,255,138,.025) 1px, transparent 1px);
+            background-size: 32px 32px;
+            pointer-events: none; z-index: 0;
+        }
+
+        /* ── HEADER ── */
+        header {
+            position: sticky; top: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 28px; height: 58px;
+            background: rgba(10,12,15,.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+        .header-left { display: flex; align-items: center; gap: 20px; }
+        .back-btn {
+            display: flex; align-items: center; gap: 6px;
+            color: var(--muted); text-decoration: none;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+            transition: color .2s;
+        }
+        .back-btn:hover { color: var(--green); }
+        .back-btn::before { content: '←'; font-size: 14px; }
+        .site-title {
+            font-size: 18px; font-weight: 800; letter-spacing: .2em;
+            text-transform: uppercase; color: var(--text-bright);
+        }
+        .site-title span { color: var(--red); }
+
+        /* ── LAYOUT ── */
+        main {
+            position: relative; z-index: 1;
+            max-width: 1100px; margin: 0 auto;
+            padding: 32px 20px 80px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+            align-items: start;
+        }
+        @media (max-width: 820px) { main { grid-template-columns: 1fr; } }
+
+        .page-header {
+            display: flex; align-items: flex-end; justify-content: space-between;
+            margin-bottom: 16px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+            grid-column: 1 / -1;
+        }
+        .page-header h1 {
+            font-size: 26px; font-weight: 800; letter-spacing: .15em;
+            text-transform: uppercase; color: var(--text-bright);
+        }
+        .page-header h1 span { color: var(--red); }
+        .page-meta {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 11px; color: var(--muted); letter-spacing: .1em;
+        }
+
+        /* ── INVENTORY PANEL ── */
+        .inv-panel {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .inv-panel-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            background: var(--panel2);
+        }
+        .inv-panel-header h2 {
+            font-size: 12px; font-weight: 700; letter-spacing: .14em;
+            text-transform: uppercase; color: var(--text-bright);
+        }
+        .inv-count {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 11px; color: var(--muted);
+        }
+
+        .inv-list {
+            display: flex; flex-direction: column; gap: 2px;
+            padding: 8px;
+            max-height: 500px; overflow-y: auto;
+        }
+        .inv-list::-webkit-scrollbar { width: 3px; }
+        .inv-list::-webkit-scrollbar-track { background: transparent; }
+        .inv-list::-webkit-scrollbar-thumb { background: var(--border-lit); border-radius: 2px; }
+
+        .inv-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 8px 11px;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background .15s, border-color .15s;
+            user-select: none;
+        }
+        .inv-item:hover { background: var(--panel2); border-color: var(--border); }
+        .inv-item.selected {
+            background: var(--red-dim);
+            border-color: rgba(255,74,107,.35);
+        }
+        .inv-item.locked {
+            opacity: .35; cursor: not-allowed;
+        }
+        .inv-item.locked:hover { background: transparent; border-color: transparent; }
+
+        .rarity-pip {
+            width: 3px; height: 32px; border-radius: 2px; flex-shrink: 0;
+        }
+        .pip-covert     { background: var(--covert); }
+        .pip-classified { background: var(--classified); }
+        .pip-restricted { background: var(--restricted); }
+        .pip-milspec    { background: var(--milspec); }
+
+        .inv-info { flex: 1; min-width: 0; }
+        .inv-name {
+            font-size: 13px; font-weight: 600; color: var(--text-bright);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .inv-sub {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px; color: var(--muted); margin-top: 2px;
+        }
+
+        .inv-checkbox {
+            width: 15px; height: 15px; flex-shrink: 0;
+            border: 1.5px solid var(--border-lit); border-radius: 2px;
+            display: flex; align-items: center; justify-content: center;
+            transition: background .15s, border-color .15s;
+        }
+        .inv-item.selected .inv-checkbox {
+            background: var(--red); border-color: var(--red);
+        }
+        .checkmark { display: none; color: #fff; font-size: 10px; line-height: 1; }
+        .inv-item.selected .checkmark { display: block; }
+
+        .empty-state {
+            padding: 48px 20px; text-align: center;
+            color: var(--muted); font-size: 13px; line-height: 1.7;
+        }
+        .empty-state .icon { font-size: 30px; margin-bottom: 10px; }
+
+        /* ── CONTRACT PANEL ── */
+        .contract-panel {
+            position: sticky; top: 74px;
+            display: flex; flex-direction: column; gap: 12px;
+        }
+
+        .contract-box {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .contract-box-header {
+            padding: 11px 16px;
+            background: var(--panel2);
+            border-bottom: 1px solid var(--border);
+            font-size: 12px; font-weight: 700; letter-spacing: .14em;
+            text-transform: uppercase; color: var(--text-bright);
+        }
+        .contract-box-body { padding: 14px; }
+
+        /* slots */
+        .slots { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+        .slot {
+            display: flex; align-items: center; gap: 8px;
+            padding: 8px 10px;
+            background: var(--bg);
+            border: 1px dashed var(--border-lit);
+            border-radius: 3px;
+            min-height: 46px;
+        }
+        .slot.filled {
+            border-style: solid;
+            border-color: rgba(255,74,107,.3);
+            background: var(--red-dim);
+        }
+        .slot-num {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px; color: var(--muted);
+            width: 14px; text-align: center; flex-shrink: 0;
+        }
+        .slot-content { flex: 1; min-width: 0; }
+        .slot-name {
+            font-size: 12px; font-weight: 600; color: var(--text-bright);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .slot-float {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px; color: var(--muted); margin-top: 1px;
+        }
+        .slot-empty { font-size: 11px; color: var(--muted); font-style: italic; }
+        .slot-x {
+            background: none; border: none; cursor: pointer;
+            color: var(--muted); font-size: 15px; line-height: 1;
+            padding: 2px 4px; border-radius: 2px;
+            transition: color .15s;
+            flex-shrink: 0;
+        }
+        .slot-x:hover { color: var(--red); }
+
+        /* progress */
+        .progress-row {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 6px;
+        }
+        .progress-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px; color: var(--muted); letter-spacing: .08em;
+        }
+        .progress-label span { color: var(--red); }
+        .progress-bar {
+            height: 2px; background: var(--border); border-radius: 2px;
+            margin-bottom: 14px; overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--red), #ff9ab4);
+            border-radius: 2px;
+            transition: width .3s ease;
+        }
+
+        /* trade btn */
+        .trade-btn {
+            width: 100%; padding: 13px;
+            background: var(--red-dim);
+            border: 1px solid rgba(255,74,107,.35);
+            border-radius: 3px;
+            color: var(--red);
+            font-family: 'Oxanium', sans-serif;
+            font-size: 13px; font-weight: 800;
+            letter-spacing: .16em; text-transform: uppercase;
+            cursor: pointer;
+            transition: background .2s, box-shadow .2s, color .2s;
+        }
+        .trade-btn:not(:disabled):hover {
+            background: var(--red);
+            color: var(--bg);
+            box-shadow: 0 0 18px rgba(255,74,107,.4);
+        }
+        .trade-btn:not(:disabled):active { transform: scale(.98); }
+        .trade-btn:disabled { opacity: .3; cursor: not-allowed; }
+
+        /* hint box */
+        .hint-box {
+            padding: 10px 14px;
+            background: rgba(57,255,138,.04);
+            border: 1px solid rgba(57,255,138,.1);
+            border-radius: 3px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px; color: var(--muted);
+            line-height: 1.6; letter-spacing: .04em;
+        }
+        .hint-box strong { color: var(--green); }
+
+        /* ── RESULT MODAL ── */
+        .modal-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,.75);
+            backdrop-filter: blur(8px);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 200;
+            opacity: 0; pointer-events: none;
+            transition: opacity .3s;
+        }
+        .modal-overlay.show { opacity: 1; pointer-events: all; }
+
+        .modal {
+            background: var(--panel);
+            border: 1px solid var(--border-lit);
+            border-radius: 6px;
+            padding: 36px 40px;
+            max-width: 360px; width: 90%;
+            text-align: center;
+            transform: scale(.92) translateY(14px);
+            transition: transform .3s;
+        }
+        .modal-overlay.show .modal { transform: scale(1) translateY(0); }
+
+        .modal-eyebrow {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px; letter-spacing: .2em;
+            text-transform: uppercase; color: var(--muted);
+            margin-bottom: 6px;
+        }
+        .modal-icon { font-size: 52px; margin-bottom: 14px; }
+        .modal-skin-name {
+            font-size: 22px; font-weight: 800; letter-spacing: .08em;
+            text-transform: uppercase; color: var(--text-bright);
+            margin-bottom: 4px;
+        }
+        .modal-weapon { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+        .modal-data {
+            display: flex; gap: 8px; justify-content: center;
+            margin-bottom: 20px;
+        }
+        .modal-pill {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 11px; padding: 3px 10px;
+            border-radius: 2px;
+            background: var(--panel2);
+            border: 1px solid var(--border-lit);
+        }
+        .modal-pill.rarity-covert     { color: var(--covert);     border-color: var(--covert); }
+        .modal-pill.rarity-classified { color: var(--classified); border-color: var(--classified); }
+        .modal-pill.rarity-restricted { color: var(--restricted); border-color: var(--restricted); }
+        .modal-pill.rarity-milspec    { color: var(--milspec);    border-color: var(--milspec); }
+
+        .modal-close {
+            padding: 11px 32px;
+            background: var(--green);
+            border: none; border-radius: 3px;
+            color: var(--bg);
+            font-family: 'Oxanium', sans-serif;
+            font-size: 13px; font-weight: 800; letter-spacing: .1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: opacity .2s, box-shadow .2s;
+        }
+        .modal-close:hover {
+            opacity: .85;
+            box-shadow: 0 0 14px var(--green-glow);
+        }
+
+        /* ── TOAST ── */
+        #toast {
+            position: fixed; bottom: 24px; left: 50%;
+            transform: translateX(-50%) translateY(12px);
+            padding: 9px 20px;
+            background: var(--panel);
+            border-radius: 3px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 12px;
+            opacity: 0; pointer-events: none;
+            transition: opacity .22s, transform .22s;
+            z-index: 1000; white-space: nowrap;
+        }
+        #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        #toast.ok   { border: 1px solid rgba(57,255,138,.4); color: var(--green); }
+        #toast.err  { border: 1px solid rgba(255,74,107,.4); color: var(--red); }
