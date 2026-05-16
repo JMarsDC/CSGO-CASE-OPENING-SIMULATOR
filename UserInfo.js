@@ -1,1 +1,1 @@
-const player = new Player("TheYeBoi", 80000);
+const player = new Player("TheYeBoi", 500);

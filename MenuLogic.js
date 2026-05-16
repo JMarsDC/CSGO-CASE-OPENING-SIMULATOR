@@ -6,12 +6,38 @@ class Player{
         this.#name = name;
         this.#balance = balance;
         this.#inventory = new Storage();
+
+        if (!this._load()) {
+        this._save();
+        }
     }
+        _load(){
+            const saved = localStorage.getItem("playerBalance");
+            if(!saved) return false;
+            try {
+                const data = JSON.parse(saved);
+                this.#balance = data.balance;
+                return true;
+            } catch (error) {
+                console.error("Failed to load player balance:", error);
+                return false;
+            }
+        }
+
+        _save(){
+            const data = {
+                balance: this.#balance
+            };
+            localStorage.setItem("playerBalance", JSON.stringify(data));
+        }
+
+    
 
     getName() {return this.#name;}
     getBalance() {return this.#balance;}
     getStorage() {return this.#inventory;}
-    setBalance() {this.#balance = balance;}
+    deductBalance(amount) {this.#balance -= amount; this._save();}
+    addBalance(amount) {this.#balance += amount;}
 }
 
 class Storage{
