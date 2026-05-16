@@ -4,46 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop</title>
-    <link rel="stylesheet" href="../../Menu/Design.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Shop.css">
 </head>
 <body>
-    <header class="main-header">
-        <h1>🏪 SHOP</h1>
-        <p class="subtitle">Buy, sell, and trade your skins</p>
+    <header>
+        <div class="header-left">
+            <a class="back-btn" href="../Menu/Menu.html">Menu</a>
+            <span class="site-title">SHOP<span></span></span>
+        </div>
     </header>
 
-    <main class="container">
-        <div class="shop-section">
-            <h2>Shop Options</h2>
-            <div class="options">
-                <a href="BuyCase.html" class="menu-btn">
-                    <button class="btn-primary">💎 BUY CASE</button>
-                </a>
-                <a href="BuySkins.html" class="menu-btn">
-                    <button class="btn-primary">🎯 BUY SKINS (MARKET)</button>
-                </a>
-                <a href="SellSkins.html" class="menu-btn">
-                    <button class="btn-primary">💰 SELL SKINS</button>
-                </a>
-                <a href="TradeUp.html" class="menu-btn">
-                    <button class="btn-primary">🔄 TRADE UP</button>
-                </a>
-                <a href="OpenCase.html" class="menu-btn">
-                    <button class="btn-primary">🎁 OPEN CASE</button>
-                </a>
-            </div>
+    <main>
+        <div class="page-header">
+            <h1>Shop <span>Options</span></h1>
         </div>
 
-        <div class="nav-section">
-            <a href="../Menu/Menu.html" class="menu-btn">
-                <button class="btn-secondary">⬅️ BACK TO MENU</button>
-            </a>
-            <a href="../Menu/TitleScreen.html" class="menu-btn">
-                <button class="btn-secondary">🏠 GO TO MENU</button>
-            </a>
+        <div class="shop-grid">
+            <div class="shop-card">
+                <div class="shop-card-header">
+                    <div class="shop-card-title">Buy Case</div>
+                    <div class="shop-card-subtitle">PURCHASE</div>
+                </div>
+                <div class="shop-card-body">
+                    <div class="shop-card-desc">Purchase weapon cases and try your luck opening them for rare skins</div>
+                    <div class="shop-card-price">30</div>
+                    <a href="BuyCase.html" style="text-decoration: none;">
+                        <button class="shop-card-btn">Open</button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="shop-card">
+                <div class="shop-card-header">
+                    <div class="shop-card-title">Buy Skins</div>
+                    <div class="shop-card-subtitle">MARKET</div>
+                </div>
+                <div class="shop-card-body">
+                    <div class="shop-card-desc">Browse the marketplace and buy individual skins instantly</div>
+                    <a href="BuySkins.html" style="text-decoration: none;">
+                        <button class="shop-card-btn">Browse</button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="shop-card">
+                <div class="shop-card-header">
+                    <div class="shop-card-title">Sell Skins</div>
+                    <div class="shop-card-subtitle">INVENTORY</div>
+                </div>
+                <div class="shop-card-body">
+                    <div class="shop-card-desc">Sell your unwanted skins from your inventory for cash</div>
+                    <a href="SellSkins.html" style="text-decoration: none;">
+                        <button class="shop-card-btn">Sell</button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="shop-card">
+                <div class="shop-card-header">
+                    <div class="shop-card-title">Open Case</div>
+                    <div class="shop-card-subtitle">UNBOX</div>
+                </div>
+                <div class="shop-card-body">
+                    <div class="shop-card-desc">Open purchased cases and potentially pull ultra-rare items</div>
+                    <a href="OpenCase.html" style="text-decoration: none;">
+                        <button class="shop-card-btn">Open</button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="shop-card">
+                <div class="shop-card-header">
+                    <div class="shop-card-title">Trade Up</div>
+                    <div class="shop-card-subtitle">CONTRACT</div>
+                </div>
+                <div class="shop-card-body">
+                    <div class="shop-card-desc">Trade 3 skins for 1 higher rarity skin with randomized outcome</div>
+                    <a href="TradeUp.html" style="text-decoration: none;">
+                        <button class="shop-card-btn">Trade</button>
+                    </a>
+                </div>
+            </div>
         </div>
     </main>
 
-    <script src="MenuLogic.js"></script>
+    <script src="../Menu/MenuLogic.js"></script>
+    <script src="../Menu/UserInfo.js"></script>
 </body>
 </html>

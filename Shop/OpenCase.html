@@ -3,45 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="">
+    <title>Open Cases</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="OpenCase.css">
 </head>
 <body>
 
-<button id="KilowattBtn" onclick="
-    openCasePage('OpenKilowattCase.html', 'KilowattBtn', 'KilowattCount','Kilowatt')">
-    Kilowatt Case <br>
-    <span id="KilowattCount">0</span>
-</button>
+<header>
+    <div class="header-left">
+        <a class="back-btn" href="Shop.html">Shop</a>
+        <span class="site-title">OPEN<span>CASE</span></span>
+    </div>
+    <div class="balance-block">
+        <span class="balance-label">Cases</span>
+        <span class="balance-value" id="caseCountDisplay">—</span>
+    </div>
+</header>
 
-<button id="RevolutionBtn" onclick="
-openCasePage('OpenRevolutionCase.html', 'RevolutionBtn', 'RevolutionCount', 'Revolution')">
-    Revolution Case <br>
-    <span id="RevolutionCount">0</span>
-</button>
+<main>
+    <div class="page-header">
+        <h1>Open <span>Cases</span></h1>
+        <span class="page-meta">SELECT A CASE TO UNBOX</span>
+    </div>
 
-<button id="DreamsAndNightmaresBtn" onclick="
-openCasePage('OpenDreamsAndNightmaresCase.html', 'DreamsAndNightmaresBtn', 'DreamsAndNightmaresCount', 'DreamsNightmare')">
-    Dreams & Nightmares Case <br>
-    <span id="DreamsAndNightmaresCount">0</span>
-</button>
+    <div class="case-grid" id="caseContainer"></div>
+</main>
 
-<br><br>
+<div id="toast"></div>
 
-<button id="KnifeBtn" onclick="
-openCasePage('OpenKnifeCase.html', 'KnifeBtn', 'KnifeCount', 'Knife')">
-    Knife Case <br>
-    <span id="KnifeCount">0</span>
-</button>
-
-<button id="GloveBtn" onclick="
-openCasePage('OpenGloveCase.html', 'GloveBtn', 'GloveCount', 'Glove')">
-    Glove Case <br>
-    <span id="GloveCount">0</span>
-</button>
-
-<script src="../../Menu/MenuLogic.js"></script>
-<script src="../../Menu/UserInfo.js"></script>
+<script src="../Menu/MenuLogic.js"></script>
+<script src="../Menu/UserInfo.js"></script>
 <script src="OpenCasePage.js"></script>
+<script>
+
+const AVAILABLE_CASES = [
+    { name: "Kilowatt",         emoji: "⚡", caseID: "Kilowatt" },
+    { name: "Revolution",       emoji: "🔥", caseID: "Revolution" },
+    { name: "Dreams & Nightmares", emoji: "👻", caseID: "DreamsNightmare" },
+    { name: "Knife",            emoji: "🔪", caseID: "Knife" },
+    { name: "Glove",            emoji: "🧤", caseID: "Glove" }
+];
+
+function updateCaseCount() {
+    const storage = player.getStorage();
+    const cases = storage.getCases();
+    let totalCount = 0;
+    
+    AVAILABLE_CASES.forEach(c => {
+        if (cases[c.caseID]) {
+            totalCount += cases[c.caseID];
+        }
+    });
+    
+    document.getElementById('caseCountDisplay').textContent = totalCount;
+}
+
+let toastTimer;
+function showToast(msg, type) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.className = 'show ' + type;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.className = '', 2200);
+}
+
+function renderCases() {
+    const container = document.getElementById('caseContainer');
+    const storage = player.getStorage();
+    const cases = storage.getCases();
+    
+    container.innerHTML = '';
+
+    AVAILABLE_CASES.forEach((caseItem) => {
+        const count = cases[caseItem.caseID] || 0;
+        const div = document.createElement('div');
+        div.className = 'case-card' + (count === 0 ? ' disabled' : '');
+        div.innerHTML = `
+            <div class="case-img-area">
+                <span>${caseItem.emoji}</span>
+            </div>
+            <div class="case-body">
+                <div class="case-name">${caseItem.name}</div>
+                <div class="case-count">
+                    <span class="count-badge">${count}</span> in inventory
+                </div>
+                <button class="open-btn" ${count === 0 ? 'disabled' : ''} onclick="openCasePage('Open${caseItem.caseID.replace(/s$/, '')}Case.html', '${caseItem.name}')">
+                    ${count === 0 ? 'Not Available' : 'Open'}
+                </button>
+            </div>
+        `;
+        container.appendChild(div);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    renderCases();
+    updateCaseCount();
+});
+
+</script>
 </body>
 </html>

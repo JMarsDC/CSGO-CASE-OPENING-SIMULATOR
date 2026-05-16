@@ -4,28 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Menu</title>
-    <link rel="stylesheet" href="Design.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Menu.css">
 </head>
 <body>
-    <header class="main-header">
-        <h1>MAIN MENU</h1>
-        <p class="subtitle">Welcome to CSGO Case Opening Simulator</p>
+    <header>
+        <span class="site-title">CSGO<span>SIMULATOR</span></span>
     </header>
 
-    <main class="container">
-        <div class="menu-section">
-            <h2>Select an Option</h2>
-            <div class="options">
-                <a href="../SkinStorage/SkinStorage.html" class="menu-btn">
-                    <button class="btn-primary">📦 STORAGE</button>
-                </a>
-                <a href="../Shop/Shop.html" class="menu-btn">
-                    <button class="btn-primary">🛍️ SHOP</button>
-                </a>
-                <a href="TitleScreen.html" class="menu-btn">
-                    <button class="btn-secondary">🚪 EXIT TO TITLE</button>
-                </a>
-            </div>
+    <main>
+        <div class="page-title">Main <span>Menu</span></div>
+        <div class="page-subtitle">WELCOME TO CSGO CASE OPENING SIMULATOR</div>
+
+        <div class="menu-grid">
+            <a href="../SkinStorage/SkinStorage.html" class="menu-card">
+                <div class="menu-card-icon">📦</div>
+                <div class="menu-card-content">
+                    <div class="menu-card-title">Storage</div>
+                    <div class="menu-card-desc">View and manage your skins</div>
+                </div>
+            </a>
+
+            <a href="../Shop/Shop.html" class="menu-card">
+                <div class="menu-card-icon">🛍️</div>
+                <div class="menu-card-content">
+                    <div class="menu-card-title">Shop</div>
+                    <div class="menu-card-desc">Buy, sell, and trade skins</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="button-section">
+            <a href="TitleScreen.html" class="btn-secondary">Exit to Title</a>
         </div>
     </main>
 

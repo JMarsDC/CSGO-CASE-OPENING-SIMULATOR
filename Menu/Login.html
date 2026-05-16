@@ -4,26 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Menu.css">
 </head>
-
 <body>
+    <header>
+        <a href="TitleScreen.html" style="text-decoration: none; color: inherit;">
+            <span class="site-title">CSGO<span>SIMULATOR</span></span>
+        </a>
+    </header>
 
-<h1>LOGIN</h1>
+    <main>
+        <div class="page-title"><span>Login</span></div>
+        <div class="page-subtitle">Sign in to your account</div>
 
-    <form>
+        <div class="form-container">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
 
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
+                <button type="submit" class="form-submit">Login</button>
+            </form>
 
-        <button type="submit">Login</button>
+            <div class="form-link">
+                Don't have an account? <a href="Register.html">Register here</a>
+            </div>
+        </div>
+    </main>
 
-    </form>
-
-    <p>Don't have an account? <a href="Register.html">Register here</a>.</p>
-
+    <script src="MenuLogic.js"></script>
     <script src="LoginLogic.js"></script>
 </body>
 </html>

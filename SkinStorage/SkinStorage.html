@@ -4,40 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory</title>
-    <link rel="stylesheet" href="../../Menu/Design.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="SkinStorage.css">
 </head>
 <body>
-    <header class="main-header">
-        <h1>📦 INVENTORY</h1>
-        <p class="subtitle">View and manage your skins</p>
+    <header>
+        <div class="header-left">
+            <a class="back-btn" href="../Menu/Menu.html">Menu</a>
+            <span class="site-title">STORAGE<span></span></span>
+        </div>
     </header>
 
-    <main class="container">
-        <div class="inventory-section">
-            <h2>Your Skins Collection</h2>
-            <div class="options">
-                <a href="GunSkins.html" class="menu-btn">
-                    <button class="btn-primary">🔫 GUN SKINS</button>
-                </a>
-                <a href="KnifeSkins.html" class="menu-btn">
-                    <button class="btn-primary">🔪 KNIFE SKINS</button>
-                </a>
-                <a href="GloveSkins.html" class="menu-btn">
-                    <button class="btn-primary">🧤 GLOVE SKINS</button>
-                </a>
-            </div>
+    <main>
+        <div class="page-header">
+            <h1>Your <span>Inventory</span></h1>
         </div>
 
-        <div class="nav-section">
-            <a href="../Menu/Menu.html" class="menu-btn">
-                <button class="btn-secondary">⬅️ BACK TO MENU</button>
-            </a>
-            <a href="../Menu/TitleScreen.html" class="menu-btn">
-                <button class="btn-secondary">🏠 GO TO MENU</button>
-            </a>
+        <div class="storage-nav">
+            <a href="SkinStorage.html" class="nav-btn active">Storage</a>
+            <a href="GunSkins.html" class="nav-btn">🔫 Gun Skins</a>
+            <a href="KnifeSkins.html" class="nav-btn">🔪 Knife Skins</a>
+            <a href="GloveSkins.html" class="nav-btn">🧤 Glove Skins</a>
+        </div>
+
+        <div id="skins-list">
+            <div class="empty-state">
+                <div class="empty-state-icon">📦</div>
+                <div class="empty-state-text">Your inventory is empty. Start buying skins!</div>
+                <a href="../Shop/BuySkins.html" class="empty-state-link">Browse Market</a>
+            </div>
         </div>
     </main>
 
+    <script src="../Menu/MenuLogic.js"></script>
+    <script src="../Menu/UserInfo.js"></script>
     <script src="GunSkins.JS"></script>
     <script src="KnifeSkins.JS"></script>
     <script src="GloveSkins.JS"></script>

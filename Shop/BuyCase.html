@@ -3,44 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="">
+    <title>Buy Cases — Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="BuyCase.css">
 </head>
 <body>
 
-    <p>Balance: $
-        <span id="Balance">0</span>
-    </p>
+<header>
+    <div class="header-left">
+        <a class="back-btn" href="Shop.html">Shop</a>
+        <span class="site-title">BUY<span>CASE</span></span>
+    </div>
+    <div class="balance-block">
+        <span class="balance-label">Balance</span>
+        <span class="balance-value" id="balanceDisplay">—</span>
+    </div>
+</header>
 
-<button id="KilowattBtn" onClick="buyCase('Kilowatt', 30)">
-    Kilowatt Case <br>
-    Price: $30
-</button>
+<main>
+    <div class="page-header">
+        <h1>Buy <span>Cases</span></h1>
+        <span class="page-meta">5 CASES AVAILABLE</span>
+    </div>
 
-<button id="RevolutionBtn" onClick="buyCase('Revolution', 30)">
-    Revolution Case <br>
-    Price: $30
-</button>
+    <div class="case-grid" id="shopContainer"></div>
+</main>
 
-<button id="DreamsAndNightmaresBtn" onClick="buyCase('DreamsAndNightmares', 30)">
-    Dreams & Nightmares Case <br>
-    Price: $30
-</button>
+<div id="toast"></div>
 
-<br><br>
+<script src="../Menu/MenuLogic.js"></script>
+<script src="../Menu/UserInfo.js"></script>
+<script>
 
-<button id="KnifeBtn" onClick="buyCase('Knife', 30)">
-    Knife Case <br>
-    Price: $30
-</button>
+const SHOP_CASES = [
+    { caseName: "Kilowatt",         price: 30,   emoji: "⚡", caseID: "Kilowatt" },
+    { caseName: "Revolution",       price: 30,   emoji: "🔥", caseID: "Revolution" },
+    { caseName: "Dreams & Nightmares", price: 30, emoji: "👻", caseID: "DreamsNightmare" },
+    { caseName: "Knife",            price: 50,   emoji: "🔪", caseID: "Knife" },
+    { caseName: "Glove",            price: 50,   emoji: "🧤", caseID: "Glove" }
+];
 
-<button id="GloveBtn" onClick="buyCase('Glove', 30)">
-    Glove Case <br>
-    Price: $30
-</button>
+function updateBalanceDisplay() {
+    document.getElementById('balanceDisplay').textContent = '$' + player.getStorage().getBalance().toLocaleString();
+}
 
-<script src="../../Menu/MenuLogic.js"></script>
-<script src="../../Menu/UserInfo.js"></script>
-<script src="BuyCaseLogic.js"></script>
+let toastTimer;
+function showToast(msg, type) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.className = 'show ' + type;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.className = '', 2200);
+}
+
+function adjustQty(index, delta) {
+    const input = document.getElementById('qty' + index);
+    const val = Math.max(1, Math.min(99, (parseInt(input.value) || 1) + delta));
+    input.value = val;
+}
+
+function buyCase(index) {
+    const quantity = Math.max(1, parseInt(document.getElementById('qty' + index).value) || 1);
+    const caseItem = SHOP_CASES[index];
+    const total = caseItem.price * quantity;
+    const storage = player.getStorage();
+    const balance = storage.getBalance();
+
+    if (balance < total) {
+        showToast(`Need $${total.toLocaleString()} — only $${balance.toLocaleString()} available`, 'err');
+        return;
+    }
+
+    storage.deductBalance(total);
+
+    for (let i = 0; i < quantity; i++) {
+        storage.addCase(caseItem.caseID);
+    }
+
+    updateBalanceDisplay();
+    showToast(`Bought ${quantity}× ${caseItem.caseName} Case`, 'ok');
+}
+
+function renderShop() {
+    const container = document.getElementById('shopContainer');
+    container.innerHTML = '';
+
+    SHOP_CASES.forEach((caseItem, index) => {
+        const div = document.createElement('div');
+        div.className = 'case-card';
+        div.innerHTML = `
+            <div class="case-img-area">
+                <span>${caseItem.emoji}</span>
+            </div>
+            <div class="case-body">
+                <div class="case-name">${caseItem.caseName}</div>
+                <div class="case-data">
+                    <span class="data-pill">Case</span>
+                </div>
+                <div class="case-price">${caseItem.price}</div>
+                <div class="case-qty-row">
+                    <div class="qty-wrap">
+                        <button class="qty-btn" onclick="adjustQty(${index}, -1)">−</button>
+                        <input class="qty-input" type="number" id="qty${index}" value="1" min="1" max="99">
+                        <button class="qty-btn" onclick="adjustQty(${index}, 1)">+</button>
+                    </div>
+                    <button class="buy-btn" onclick="buyCase(${index})">Buy</button>
+                </div>
+            </div>
+        `;
+        container.appendChild(div);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    renderShop();
+    updateBalanceDisplay();
+});
+
+</script>
 </body>
 </html>

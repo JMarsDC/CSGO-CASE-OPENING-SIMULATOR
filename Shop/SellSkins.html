@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Skins — Inventory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="SellSkins.css">
+</head>
+
+<body>
+<header>
+    <div class="header-left">
+        <a class="back-btn" href="Shop.html">Shop</a>
+        <span class="site-title">SELL<span>SKINS</span></span>
+    </div>
+    <div class="balance-block">
+        <span class="balance-label">Balance</span>
+        <span class="balance-value" id="balanceDisplay">—</span>
+    </div>
+</header>
+
+<main>
+    <div class="page-header">
+        <h1>Sell <span>Skins</span></h1>
+        <span class="listing-meta" id="inventoryMeta">0 SKINS AVAILABLE</span>
+    </div>
+
+    <div id="inventoryContainer">
+        <div class="empty-state">
+            <div class="empty-state-icon">📦</div>
+            <div class="empty-state-text">Your inventory is empty. Buy some skins first!</div>
+            <a href="BuySkins.html" class="empty-state-link">Browse Market</a>
+        </div>
+    </div>
+</main>
+
+<div id="toast"></div>
+
+<script src="../Menu/MenuLogic.js"></script>
+<script src="../Menu/UserInfo.js"></script>
+<script>
+
+// Sell price is typically 60-70% of market price
+function calculateSellPrice(marketPrice) {
+    return Math.floor(marketPrice * 0.65);
+}
+
+function updateBalanceDisplay() {
+    document.getElementById('balanceDisplay').textContent = '$' + player.getStorage().getBalance().toLocaleString();
+}
+
+let toastTimer;
+function showToast(msg, type) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.className = 'show ' + type;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.className = '', 2200);
+}
+
+function sellSkin(skinIndex) {
+    const storage = player.getStorage();
+    const skins = storage.getSkins();
+    
+    if (!skins || skinIndex >= skins.length) {
+        showToast('Skin not found', 'err');
+        return;
+    }
+    
+    const skin = skins[skinIndex];
+    const sellPrice = calculateSellPrice(skin.price);
+    
+    storage.addBalance(sellPrice);
+    storage.removeSkin(skinIndex);
+    
+    updateBalanceDisplay();
+    renderInventory();
+    showToast(`Sold ${skin.weaponName} | ${skin.skinName} for $${sellPrice.toLocaleString()}`, 'ok');
+}
+
+function renderInventory() {
+    const storage = player.getStorage();
+    const skins = storage.getSkins();
+    const container = document.getElementById('inventoryContainer');
+    const metaEl = document.getElementById('inventoryMeta');
+    
+    if (!skins || skins.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-state-icon">📦</div>
+                <div class="empty-state-text">Your inventory is empty. Buy some skins first!</div>
+                <a href="BuySkins.html" class="empty-state-link">Browse Market</a>
+            </div>
+        `;
+        metaEl.textContent = '0 SKINS AVAILABLE';
+        return;
+    }
+    
+    metaEl.textContent = skins.length + ' SKIN' + (skins.length !== 1 ? 'S' : '') + ' AVAILABLE';
+    container.innerHTML = '';
+    
+    const grid = document.createElement('div');
+    grid.className = 'skin-grid';
+    
+    skins.forEach((skin, index) => {
+        const sellPrice = calculateSellPrice(skin.price);
+        const div = document.createElement('div');
+        div.className = `skin-card rarity-${skin.rarity}`;
+        div.innerHTML = `
+            <div class="skin-img-area">
+                ${skin.img ? `<img src="../${skin.img}" style="max-height:90%;max-width:90%;object-fit:contain;">` : `<span>🎯</span>`}
+                <span class="rarity-tag">${skin.rarity}</span>
+            </div>
+            <div class="skin-body">
+                <div class="skin-weapon">${skin.weaponName}</div>
+                <div class="skin-name">${skin.skinName}</div>
+                <div class="skin-data">
+                    <span class="data-pill float-val">F: ${skin.floatVal}</span>
+                    <span class="data-pill">${skin.weapon}</span>
+                </div>
+                <div class="skin-price">${sellPrice}</div>
+                <div class="sell-row">
+                    <button class="sell-btn" onclick="sellSkin(${index})">Sell</button>
+                </div>
+            </div>
+        `;
+        grid.appendChild(div);
+    });
+    
+    container.appendChild(grid);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    renderInventory();
+    updateBalanceDisplay();
+});
+
+</script>
+</body>
+</html>

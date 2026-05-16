@@ -3,28 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STORAGE</title>
-    <link rel="stylesheet" href="../../Menu/Design.css">
+    <title>Gun Skins — Storage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="SkinStorage.css">
 </head>
+<body>
 
 <header>
-    <h1>GUN SKINS</h1>
+    <div class="header-left">
+        <a class="back-btn" href="SkinStorage.html">Storage</a>
+        <span class="site-title">GUN<span>SKINS</span></span>
+    </div>
 </header>
 
-<body>
 <main>
+    <div class="page-header">
+        <h1>Gun <span>Skins</span></h1>
+        <span class="page-meta" id="skinCount">0 SKINS</span>
+    </div>
 
-  <div id="skins-list">
+    <div class="storage-nav">
+        <a href="SkinStorage.html" class="nav-btn">Storage</a>
+        <a href="GunSkins.html" class="nav-btn active">🔫 Gun Skins</a>
+        <a href="KnifeSkins.html" class="nav-btn">🔪 Knife Skins</a>
+        <a href="GloveSkins.html" class="nav-btn">🧤 Glove Skins</a>
+    </div>
 
-  </div>
-
-  <button><a href="SkinStorage.html">GO TO STORAGE</a></button>
-
+    <div id="skins-list">
+        <div class="empty-state">
+            <div class="empty-state-icon">🔫</div>
+            <div class="empty-state-text">No gun skins yet. Check the market!</div>
+            <a href="../Shop/BuySkins.html" class="empty-state-link">Browse Market</a>
+        </div>
+    </div>
 </main>
 
 <!-- should load the files in this order -->
-<script src="../../Menu/MenuLogic.js"></script>
-<script src="../../Menu/UserInfo.js"></script>
+<script src="../Menu/MenuLogic.js"></script>
+<script src="../Menu/UserInfo.js"></script>
 <script src="GunSkins.js"></script>
 
 </body>

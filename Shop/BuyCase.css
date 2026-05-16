@@ -80,27 +80,27 @@ header {
     text-transform: uppercase;
     color: var(--text-bright);
 }
-.site-title span { color: var(--green); }
+.site-title span { color: var(--gold); }
 
-/* balance/count */
+/* balance */
 .balance-block {
     display: flex; align-items: center; gap: 0;
-    border: 1px solid rgba(57,255,138,.2);
+    border: 1px solid rgba(255,200,74,.2);
     border-radius: 3px;
     overflow: hidden;
 }
 .balance-label {
     padding: 6px 10px;
-    background: rgba(57,255,138,.08);
+    background: rgba(255,200,74,.08);
     font-family: 'Share Tech Mono', monospace;
     font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
-    color: var(--green);
-    border-right: 1px solid rgba(57,255,138,.2);
+    color: var(--gold);
+    border-right: 1px solid rgba(255,200,74,.2);
 }
 .balance-value {
     padding: 6px 14px;
     font-family: 'Share Tech Mono', monospace;
-    font-size: 15px; color: var(--green); font-weight: 600;
+    font-size: 15px; color: var(--gold); font-weight: 600;
 }
 
 /* ── MAIN ── */
@@ -121,7 +121,7 @@ main {
     text-transform: uppercase; color: var(--text-bright);
     line-height: 1;
 }
-.page-header h1 span { color: var(--green); }
+.page-header h1 span { color: var(--gold); }
 .page-meta {
     font-family: 'Share Tech Mono', monospace;
     font-size: 11px; color: var(--muted); letter-spacing: .1em;
@@ -132,6 +132,7 @@ main {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 16px;
+    margin-bottom: 32px;
 }
 
 .case-card {
@@ -143,14 +144,10 @@ main {
     transition: border-color .2s, transform .2s, box-shadow .2s;
     animation: fadeUp .35s both;
 }
-.case-card:hover:not(.disabled) {
+.case-card:hover {
     border-color: var(--border-lit);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0,0,0,.5);
-}
-.case-card.disabled {
-    opacity: 0.6;
-    pointer-events: none;
 }
 
 @keyframes fadeUp {
@@ -178,29 +175,59 @@ main {
 
 .case-name {
     font-size: 15px; font-weight: 700; color: var(--text-bright);
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
-.case-count {
+.case-data {
+    display: flex; gap: 6px; margin-bottom: 10px;
+}
+.data-pill {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 12px; color: var(--muted);
-    margin-bottom: 12px;
-    flex: 1;
-    display: flex; align-items: center; gap: 6px;
-}
-
-.count-badge {
-    display: inline-block;
-    padding: 2px 7px;
-    background: var(--green-dim);
-    border: 1px solid rgba(57,255,138,.3);
+    font-size: 10px; padding: 2px 7px;
     border-radius: 2px;
-    color: var(--green);
-    font-weight: 600;
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    color: var(--muted);
 }
 
-.open-btn {
-    width: 100%; height: 36px;
+.case-price {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 17px; color: var(--gold); font-weight: 600;
+    margin-bottom: 11px;
+}
+.case-price::before { content: '$ '; font-size: 12px; color: rgba(255,200,74,.5); }
+
+.case-qty-row {
+    display: flex; gap: 6px; margin-top: auto;
+}
+.qty-wrap {
+    display: flex; align-items: center;
+    border: 1px solid var(--border); border-radius: 3px;
+    overflow: hidden; background: var(--bg);
+}
+.qty-btn {
+    width: 24px; height: 32px;
+    background: var(--panel2); border: none;
+    color: var(--text); font-size: 15px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background .15s, color .15s;
+    font-family: 'Share Tech Mono', monospace;
+}
+.qty-btn:hover { background: var(--border-lit); color: var(--green); }
+.qty-input {
+    width: 36px; height: 32px;
+    background: transparent; border: none;
+    color: var(--text-bright);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px; text-align: center;
+    outline: none;
+    -moz-appearance: textfield;
+}
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+.buy-btn {
+    flex: 1; height: 32px;
     background: var(--green-dim);
     border: 1px solid rgba(57,255,138,.3);
     border-radius: 3px;
@@ -211,16 +238,12 @@ main {
     cursor: pointer;
     transition: background .2s, box-shadow .2s, color .2s;
 }
-.open-btn:hover:not(:disabled) {
+.buy-btn:hover {
     background: var(--green);
     color: var(--bg);
     box-shadow: 0 0 14px var(--green-glow);
 }
-.open-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-.open-btn:active:not(:disabled) { transform: scale(.97); }
+.buy-btn:active { transform: scale(.97); }
 
 /* ── TOAST ── */
 #toast {
@@ -258,73 +281,4 @@ main {
         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
         gap: 12px;
     }
-}
-
-	border: none;
-	z-index: 12222225;
-	width: 5px;
-	height: 100%;
-	left: 50%;
-	background: #d16266;
-}
-.item {
-    display: inline-block;
-    flex: 0 0 var(--item-width);
-    margin: 4px 0 0.5px 5px;
-    width: var(--item-width);
-    height: calc(var(--roller-height) - 4px);
-    border: 1px solid #70677c;
-    background: #14202b;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-.class_red_item {
-	border-bottom: 4px solid #EB4B4B;
-}
-img {
-	border: 0;
-	vertical-align: middle;
-}
-.winning-item {
-	border: 2px solid #66b233;
-	position: relative;
-	top: -1px;
-    	border-bottom: 4px solid #66b233;
-}
-.inventory {
-	margin: 0 auto;
-	width: 100%;
-	max-width: 960px;
-	padding: 10px 15px 6px;
-	height: auto;
-	display: flex;
-	flex-wrap: wrap;
-	gap: 6px;
-	justify-content: center;
-	align-items: flex-start;
-	box-sizing: border-box;
-	border: 2px solid #1c3344;
-	background: #0e1a23;
-}
-.inventory > .item {
-	flex: 0 0 var(--item-width);
-	width: var(--item-width);
-	height: calc(var(--roller-height) - 12px);
-	box-sizing: border-box;
-	cursor: pointer;
-	margin: 0;
-}
-.inventory > .item:hover {
-	background-size: 90%;
-	background-color: #182a38;
-}
-.inventory > .item:active {
-	transform: translateY(-2px);
-	border: 2px solid #356d27;
-	border-bottom: 4px solid #356d27;
-}
-/* Ensure red-class styling shows inside inventory (higher specificity) */
-.inventory > .item.class_red_item {
-	border-bottom: 4px solid #EB4B4B;
 }
