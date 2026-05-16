@@ -3,29 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STORAGE</title>
-    <link rel="stylesheet" href="../Design.css">
+    <title>Shop</title>
+    <link rel="stylesheet" href="../../Menu/Design.css">
 </head>
-
-<header>
-    <h1>STORAGE</h1>
-</header>
-
 <body>
-    
-<main>
+    <header class="main-header">
+        <h1>🏪 SHOP</h1>
+        <p class="subtitle">Buy, sell, and trade your skins</p>
+    </header>
 
-<div class="options">
-<a href="SellSkins.html"><button> Sell Skins </button></a>
-<a href="BuySkins.html"><button> Buy Skins(Market) </button></a>
-<a href="TradeUp.html"><button> Trade Up Skins </button></a>
-<a href="BuyCase.html"><button> Buy Case </button></a>
-<a href="OpenCase.html"><button> Open Case </button></a> <br><br>
-  </div>
+    <main class="container">
+        <div class="shop-section">
+            <h2>Shop Options</h2>
+            <div class="options">
+                <a href="BuyCase.html" class="menu-btn">
+                    <button class="btn-primary">💎 BUY CASE</button>
+                </a>
+                <a href="BuySkins.html" class="menu-btn">
+                    <button class="btn-primary">🎯 BUY SKINS (MARKET)</button>
+                </a>
+                <a href="SellSkins.html" class="menu-btn">
+                    <button class="btn-primary">💰 SELL SKINS</button>
+                </a>
+                <a href="TradeUp.html" class="menu-btn">
+                    <button class="btn-primary">🔄 TRADE UP</button>
+                </a>
+                <a href="OpenCase.html" class="menu-btn">
+                    <button class="btn-primary">🎁 OPEN CASE</button>
+                </a>
+            </div>
+        </div>
 
+        <div class="nav-section">
+            <a href="../Menu/Menu.html" class="menu-btn">
+                <button class="btn-secondary">⬅️ BACK TO MENU</button>
+            </a>
+            <a href="../Menu/TitleScreen.html" class="menu-btn">
+                <button class="btn-secondary">🏠 GO TO MENU</button>
+            </a>
+        </div>
+    </main>
 
-  <button><a href="../TitleScreen.html"> GO TO MENU</a> </button>
-</main>
-
+    <script src="MenuLogic.js"></script>
 </body>
 </html>

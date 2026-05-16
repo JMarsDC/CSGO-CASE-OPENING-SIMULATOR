@@ -1,12 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Arvo');
+:root {
+	--roller-height: 100px;
+	--item-width: 85px;
+}
 body {
 	background: rgb(25,25,33);
 }
 .raffle-roller {
-    	height: 100px;
-    	position: relative;
-    	margin: 60px auto 30px auto;
-    	width: 900px;
+	height: var(--roller-height);
+	position: relative;
+	margin: 60px auto 30px auto;
+	width: 100%;
+	max-width: 900px;
 }
 .raffle-roller-holder {
     	position: absolute;
@@ -32,12 +37,13 @@ body {
     	width: 100%;
 }
 .raffle-roller-container {
-    	width: 9999999999999999999px;
-    	max-width: 999999999999999999px;
-    	height: 100px;
-    	background: #191726;
-    	margin-left: 0;
-    	transition: all 8s cubic-bezier(.08,.6,0,1);
+	display: flex;
+	align-items: center;
+	height: var(--roller-height);
+	background: #191726;
+	margin-left: 0;
+	transition: transform 8s cubic-bezier(.08,.6,0,1);
+	transform: translateX(0);
 }
 .raffle-roller-holder:before {
 	content: "";
@@ -50,17 +56,16 @@ body {
 	background: #d16266;
 }
 .item {
-	display: inline-block;
-	float: left;
-	margin: 4px 0px 0.5px 5px;
-    	width: 85px;
-	height: 88px;
-    	float: left;
-	border: 1px solid #70677c;
-	background: #14202b;
-	background-size: 100%;
-   	background-repeat: no-repeat;
-    	background-position: center;
+    display: inline-block;
+    flex: 0 0 var(--item-width);
+    margin: 4px 0 0.5px 5px;
+    width: var(--item-width);
+    height: calc(var(--roller-height) - 4px);
+    border: 1px solid #70677c;
+    background: #14202b;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .class_red_item {
 	border-bottom: 4px solid #EB4B4B;
@@ -77,27 +82,37 @@ img {
 }
 .inventory {
 	margin: 0 auto;
-	width: 960px;
-	max-width: 953px;
+	width: 100%;
+	max-width: 960px;
 	padding: 10px 15px 6px;
 	height: auto;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	justify-content: center;
+	align-items: flex-start;
+	box-sizing: border-box;
 	border: 2px solid #1c3344;
 	background: #0e1a23;
 }
 .inventory > .item {
-	float: none;
+	flex: 0 0 var(--item-width);
+	width: var(--item-width);
+	height: calc(var(--roller-height) - 12px);
+	box-sizing: border-box;
 	cursor: pointer;
-	margin: 4px 2px 0.5px 2px;
+	margin: 0;
 }
 .inventory > .item:hover {
 	background-size: 90%;
 	background-color: #182a38;
 }
 .inventory > .item:active {
-	height: 83px;
-	width: 80px;
-	position: relative;
-	top: -2px;
+	transform: translateY(-2px);
 	border: 2px solid #356d27;
 	border-bottom: 4px solid #356d27;
+}
+/* Ensure red-class styling shows inside inventory (higher specificity) */
+.inventory > .item.class_red_item {
+	border-bottom: 4px solid #EB4B4B;
 }

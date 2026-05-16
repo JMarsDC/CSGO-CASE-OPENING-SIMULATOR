@@ -3,27 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STORAGE</title>
-    <link rel="stylesheet" href="../Design.css">
+    <title>Inventory</title>
+    <link rel="stylesheet" href="../../Menu/Design.css">
 </head>
-
-<header>
-    <h1>STORAGE</h1>
-</header>
-
 <body>
-    
-<main>
+    <header class="main-header">
+        <h1>📦 INVENTORY</h1>
+        <p class="subtitle">View and manage your skins</p>
+    </header>
 
-<div class="options">
-<a href="GunSkins.html"><button> View Gun Skins </button></a>
-<a href="KnifeSkins.html"><button> View Knife Skins </button></a>
-<a href="GloveSkins.html"><button> View Glove Skins </button></a>
-  </div>
+    <main class="container">
+        <div class="inventory-section">
+            <h2>Your Skins Collection</h2>
+            <div class="options">
+                <a href="GunSkins.html" class="menu-btn">
+                    <button class="btn-primary">🔫 GUN SKINS</button>
+                </a>
+                <a href="KnifeSkins.html" class="menu-btn">
+                    <button class="btn-primary">🔪 KNIFE SKINS</button>
+                </a>
+                <a href="GloveSkins.html" class="menu-btn">
+                    <button class="btn-primary">🧤 GLOVE SKINS</button>
+                </a>
+            </div>
+        </div>
 
+        <div class="nav-section">
+            <a href="../Menu/Menu.html" class="menu-btn">
+                <button class="btn-secondary">⬅️ BACK TO MENU</button>
+            </a>
+            <a href="../Menu/TitleScreen.html" class="menu-btn">
+                <button class="btn-secondary">🏠 GO TO MENU</button>
+            </a>
+        </div>
+    </main>
 
-<a href="../TitleScreen.html"> <button>GO TO MENU </button></a>
-</main>
-
+    <script src="GunSkins.JS"></script>
+    <script src="KnifeSkins.JS"></script>
+    <script src="GloveSkins.JS"></script>
 </body>
 </html>
