@@ -1,3 +1,15 @@
+function getCurrentUser() {
+    return localStorage.getItem('currentUser');
+}
+
+function getPlayerBalanceKey(name) {
+    return `player_${name}_balance`;
+}
+
+function getPlayerStorageKey(name) {
+    return `player_${name}_storage`;
+}
+
 class Player{
     #name;
     #balance;
@@ -5,31 +17,47 @@ class Player{
     constructor(name,balance){
         this.#name = name;
         this.#balance = balance;
-        this.#inventory = new Storage();
+        this.#inventory = new Storage(name);
 
         if (!this._load()) {
-        this._save();
+            this._save();
         }
     }
-        _load(){
-            const saved = localStorage.getItem("playerBalance");
-            if(!saved) return false;
-            try {
-                const data = JSON.parse(saved);
-                this.#balance = data.balance;
-                return true;
-            } catch (error) {
-                console.error("Failed to load player balance:", error);
-                return false;
-            }
-        }
 
-        _save(){
-            const data = {
-                balance: this.#balance
-            };
-            localStorage.setItem("playerBalance", JSON.stringify(data));
+    _load(){
+        let saved = localStorage.getItem(getPlayerBalanceKey(this.#name));
+        if (!saved) {
+            // fallback to old storage key for compatibility
+            saved = localStorage.getItem("playerBalance");
         }
+        if(!saved) return false;
+
+        try {
+            const data = JSON.parse(saved);
+            this.#balance = data.balance;
+            return true;
+        } catch (error) {
+            console.error("Failed to load player balance:", error);
+            return false;
+        }
+    }
+
+    _save(){
+        const data = {
+            balance: this.#balance
+        };
+        localStorage.setItem(getPlayerBalanceKey(this.#name), JSON.stringify(data));
+    }
+
+    save(){
+        this._save();
+    }
+
+    getName() {return this.#name;}
+    getBalance() {return this.#balance;}
+    getStorage() {return this.#inventory;}
+    deductBalance(amount) {this.#balance -= amount; this._save();}
+    addBalance(amount) {this.#balance += amount; this._save();}
 
     
 
@@ -43,8 +71,10 @@ class Player{
 class Storage{
     #skins;
     #cases;
+    #owner;
 
-    constructor(){
+    constructor(owner){
+        this.#owner = owner;
         this.#skins = [];
         this.#cases = {
             Kilowatt: 1,
@@ -97,7 +127,11 @@ class Storage{
     }
 
     _load(){
-        const saved = localStorage.getItem("playerStorage");
+        let saved = localStorage.getItem(getPlayerStorageKey(this.#owner));
+        if (!saved) {
+            // fallback to old storage key for compatibility
+            saved = localStorage.getItem("playerStorage");
+        }
         if (!saved) return false;
 
         try {
@@ -132,7 +166,11 @@ class Storage{
             cases: this.#cases
         };
 
-        localStorage.setItem("playerStorage", JSON.stringify(data));
+        localStorage.setItem(getPlayerStorageKey(this.#owner), JSON.stringify(data));
+    }
+
+    save(){
+        this._save();
     }
 
     _populate(){

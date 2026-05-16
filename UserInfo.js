@@ -1,1 +1,0 @@
-const player = new Player("TheYeBoi", 500);
