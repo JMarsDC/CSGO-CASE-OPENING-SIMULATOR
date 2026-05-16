@@ -1,6 +1,6 @@
 const gloveSkins = player.getStorage().getGloveSkins();
 
-const container = document.getElementById("glove-skins-list");
+const container = document.getElementById("skins-list");
 
 gloveSkins.forEach(skin => {
     const gloveImage = document.createElement("img");

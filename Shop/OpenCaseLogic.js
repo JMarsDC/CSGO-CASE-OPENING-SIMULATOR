@@ -11,9 +11,9 @@ function setCase(caseObj) {
 
 function generate() {
 	$('.raffle-roller-container').css({
-		transition: "sdf",
-		"margin-left": "0px"
-	}, 10).html('');
+		transition: 'none',
+		transform: 'translateX(0px)'
+	}).html('');
 
 	if (!currentCase) {
 		console.error('No case set for OpenCaseLogic')
@@ -52,7 +52,7 @@ function generate() {
 
 function goRoll(skin, skinimg, reward) {
 	$('.raffle-roller-container').css({
-		transition: "all 8s cubic-bezier(.08,.6,0,1)"
+		transition: 'transform 8s cubic-bezier(.08,.6,0,1)'
 	});
 	$('#CardNumber78').css({
 		"background-image": "url("+"../"+skinimg+")"
@@ -67,7 +67,18 @@ function goRoll(skin, skinimg, reward) {
         player.getStorage().addSkin(reward)
 
 	}, 8500);
-	$('.raffle-roller-container').css('margin-left', '-6770px');
+	// compute dynamic shift so the winning card (CardNumber78) lands at holder center
+	setTimeout(function() {
+		var $container = $('.raffle-roller-container');
+		var $holder = $('.raffle-roller-holder');
+		var $items = $container.find('.item');
+		var targetIndex = 78;
+		var itemWidth = $items.first().outerWidth(true) || 85;
+		var targetCenter = targetIndex * itemWidth + (itemWidth / 2);
+		var holderCenter = $holder.width() / 2;
+		var shift = targetCenter - holderCenter;
+		$container.css('transform', 'translateX(' + (-shift) + 'px)');
+	}, 20);
 }
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
