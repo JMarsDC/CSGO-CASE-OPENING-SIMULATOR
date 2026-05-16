@@ -3,27 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STORAGE</title>
+    <title>Main Menu</title>
     <link rel="stylesheet" href="Design.css">
 </head>
-
-<header>
-    <h1>STORAGE</h1>
-</header>
-
 <body>
-    
-<main>
+    <header class="main-header">
+        <h1>MAIN MENU</h1>
+        <p class="subtitle">Welcome to CSGO Case Opening Simulator</p>
+    </header>
 
-<div class="options">
+    <main class="container">
+        <div class="menu-section">
+            <h2>Select an Option</h2>
+            <div class="options">
+                <a href="../SkinStorage/SkinStorage.html" class="menu-btn">
+                    <button class="btn-primary">📦 STORAGE</button>
+                </a>
+                <a href="../Shop/Shop.html" class="menu-btn">
+                    <button class="btn-primary">🛍️ SHOP</button>
+                </a>
+                <a href="TitleScreen.html" class="menu-btn">
+                    <button class="btn-secondary">🚪 EXIT TO TITLE</button>
+                </a>
+            </div>
+        </div>
+    </main>
 
-<a href="OpenCase.html"><button> Open Case </button></a>
-
-  </div>
-
-
-  <button><a href="TitleScreen.html"> GO TO MENU</a> </button>
-</main>
-
+    <script src="MenuLogic.js"></script>
+    <script src="UserInfo.js"></script>
 </body>
 </html>
