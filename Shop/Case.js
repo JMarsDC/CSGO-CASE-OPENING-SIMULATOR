@@ -1,87 +1,93 @@
-class Case{
+class Case {
     #name;
     #items;
     #price;
     #caseType;
-    constructor(name,items,price,caseType){
+
+    constructor(name, items, price, caseType) {
         this.#name = name;
         this.#items = items;
         this.#price = price;
         this.#caseType = caseType;
     }
 
-    //abstract
+    // abstract
     rollItem() {
         throw new Error("rollItem() must be implemented by subclass");
     }
 
-    getName(){
+    getName() {
         return this.#name;
     }
 
-    getPrice(){
+    getPrice() {
         return this.#price;
     }
 
-    getCaseType(){
+    getCaseType() {
         return this.#caseType;
     }
 
-    getItems(){
+    getItems() {
         return this.#items;
     }
 
     #randomInt(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
+        return Math.floor(Math.random() * (max - min)) + min;
     }
 
-    _randomInt(min,max){
-        return this.#randomInt(min,max);
+    _randomInt(min, max) {
+        return this.#randomInt(min, max);
     }
 
-    _getItems(){
+    _getItems() {
         return this.#items;
     }
-
 }
 
-class Kilowatt extends Case{
-    constructor(){
+class Kilowatt extends Case {
+    constructor() {
+        super("Kilowatt", {
+            covert: {
+                skinName: "Inheritance",
+                floatVal: Math.pow(Math.random(), 2),
+                price: 3200,
+                weaponName: "AK-47",
+                weapon: "Gun",
+                img: "",
+                rarity: "covert"
+            },
 
-        super("Kilowatt",{
-    covert: {
-        skinName: "Inheritance",
-        floatVal: Math.pow(Math.random(), 2),
-        price: 3200,
-        weaponName: "AK-47",
-        weapon: "Gun",
-        img: ""
-    },
-    classified: {
-        skinName: "Chrome Cannon",
-        floatVal: Math.pow(Math.random(), 2),
-        price: 900,
-        weaponName: "AWP",
-        weapon: "Gun",
-        img: ""
-    },
-    restricted: {
-        skinName: "Black Lotus",
-        floatVal: Math.pow(Math.random(), 2),
-        price: 250,
-        weaponName: "M4A1-S",
-        weapon: "Gun",
-        img: ""
-    },
-    milspec: {
-        skinName: "Just Smile",
-        floatVal: Math.pow(Math.random(), 2),
-        price: 45,
-        weaponName: "MP7",
-        weapon: "Gun",
-        img: ""
-    }
-}, 30, "weapon_case")
+            classified: {
+                skinName: "Chrome Cannon",
+                floatVal: Math.pow(Math.random(), 2),
+                price: 900,
+                weaponName: "AWP",
+                weapon: "Gun",
+                img: "",
+                rarity: "classified"
+            },
+
+            restricted: {
+                skinName: "Black Lotus",
+                floatVal: Math.pow(Math.random(), 2),
+                price: 250,
+                weaponName: "M4A1-S",
+                weapon: "Gun",
+                img: "",
+                rarity: "restricted"
+            },
+
+            milspec: {
+                skinName: "Just Smile",
+                floatVal: Math.pow(Math.random(), 2),
+                price: 45,
+                weaponName: "MP7",
+                weapon: "Gun",
+                img: "",
+                rarity: "milspec"
+            }
+        }, 30, "weapon_case");
     }
 
     rollItem() {
@@ -93,9 +99,7 @@ class Kilowatt extends Case{
         if (chance <= 200) return items.restricted;
         return items.milspec;
     }
-
 }
-
 
 class Revolution extends Case {
     constructor() {
@@ -106,31 +110,38 @@ class Revolution extends Case {
                 price: 3100,
                 weaponName: "AK-47",
                 weapon: "Gun",
-                img: ""
+                img: "",
+                rarity: "covert"
             },
+
             classified: {
                 skinName: "Wildfire Protocol",
                 floatVal: Math.pow(Math.random(), 2),
                 price: 950,
                 weaponName: "Desert Eagle",
                 weapon: "Gun",
-                img: ""
+                img: "",
+                rarity: "classified"
             },
+
             restricted: {
                 skinName: "Circuit Breaker",
                 floatVal: Math.pow(Math.random(), 2),
                 price: 260,
                 weaponName: "M4A1-S",
                 weapon: "Gun",
-                img: ""
+                img: "",
+                rarity: "restricted"
             },
+
             milspec: {
                 skinName: "Reboot",
                 floatVal: Math.pow(Math.random(), 2),
                 price: 55,
                 weaponName: "MP9",
                 weapon: "Gun",
-                img: ""
+                img: "",
+                rarity: "milspec"
             }
         }, 30, "weapon_case");
     }
@@ -146,54 +157,60 @@ class Revolution extends Case {
     }
 }
 
-class DreamsAndNightmares extends Case{
+class DreamsAndNightmares extends Case {
     constructor() {
-    super("DreamsNightmare", {
-        covert: {
-            skinName: "Night Terror",
-            floatVal: Math.pow(Math.random(), 2),
-            price: 3400,
-            weaponName: "AK-47",
-            weapon: "Gun",
-            img: ""
-        },
-        classified: {
-            skinName: "Phantom Pulse",
-            floatVal: Math.pow(Math.random(), 2),
-            price: 880,
-            weaponName: "USP-S",
-            weapon: "Gun",
-            img: ""
-        },
-        restricted: {
-            skinName: "Dream Glade",
-            floatVal: Math.pow(Math.random(), 2),
-            price: 240,
-            weaponName: "M4A1-S",
-            weapon: "Gun",
-            img: ""
-        },
-        milspec: {
-            skinName: "Sleep Paralysis",
-            floatVal: Math.pow(Math.random(), 2),
-            price: 50,
-            weaponName: "P90",
-            weapon: "Gun",
-            img: ""
-        }
-    }, 30, "weapon_case");
-}
+        super("DreamsNightmare", {
+            covert: {
+                skinName: "Night Terror",
+                floatVal: Math.pow(Math.random(), 2),
+                price: 3400,
+                weaponName: "AK-47",
+                weapon: "Gun",
+                img: "",
+                rarity: "covert"
+            },
 
-rollItem() {
-    const chance = this._randomInt(1, 1000);
-    const items = this._getItems();
+            classified: {
+                skinName: "Phantom Pulse",
+                floatVal: Math.pow(Math.random(), 2),
+                price: 880,
+                weaponName: "USP-S",
+                weapon: "Gun",
+                img: "",
+                rarity: "classified"
+            },
 
-    if (chance <= 8) return items.covert;        // rarer covert
-    if (chance <= 45) return items.classified;
-    if (chance <= 180) return items.restricted;
-    return items.milspec;
-}
+            restricted: {
+                skinName: "Dream Glade",
+                floatVal: Math.pow(Math.random(), 2),
+                price: 240,
+                weaponName: "M4A1-S",
+                weapon: "Gun",
+                img: "",
+                rarity: "restricted"
+            },
 
+            milspec: {
+                skinName: "Sleep Paralysis",
+                floatVal: Math.pow(Math.random(), 2),
+                price: 50,
+                weaponName: "P90",
+                weapon: "Gun",
+                img: "",
+                rarity: "milspec"
+            }
+        }, 30, "weapon_case");
+    }
+
+    rollItem() {
+        const chance = this._randomInt(1, 1000);
+        const items = this._getItems();
+
+        if (chance <= 8) return items.covert;
+        if (chance <= 45) return items.classified;
+        if (chance <= 180) return items.restricted;
+        return items.milspec;
+    }
 }
 
 class KnifeCase extends Case {
@@ -205,43 +222,50 @@ class KnifeCase extends Case {
                 price: 12000,
                 weaponName: "Karambit",
                 weapon: "Knife",
-                img: ""
+                img: "",
+                rarity: "covert"
             },
+
             classified: {
                 skinName: "M9 Bayonet | Slaughter",
                 floatVal: Math.pow(Math.random(), 2),
                 price: 8000,
                 weaponName: "M9 Bayonet",
                 weapon: "Knife",
-                img: ""
+                img: "",
+                rarity: "classified"
             },
+
             restricted: {
                 skinName: "Butterfly Knife | Case Hardened",
                 floatVal: Math.pow(Math.random(), 2),
                 price: 5000,
                 weaponName: "Butterfly Knife",
                 weapon: "Knife",
-                img: ""
+                img: "",
+                rarity: "restricted"
             },
+
             milspec: {
                 skinName: "Gut Knife | Safari Mesh",
                 floatVal: Math.pow(Math.random(), 2),
                 price: 1500,
                 weaponName: "Gut Knife",
                 weapon: "Knife",
-                img: ""
+                img: "",
+                rarity: "milspec"
             }
-        }, 100, "knife_case"); // higher price
+        }, 100, "knife_case");
     }
 
     rollItem() {
         const chance = this._randomInt(1, 1000);
         const items = this._getItems();
 
-        if (chance <= 5) return items.covert;       // 0.5%
-        if (chance <= 25) return items.classified;  // 2%
-        if (chance <= 120) return items.restricted; // 9.5%
-        return items.milspec;                       // 88%
+        if (chance <= 5) return items.covert;
+        if (chance <= 25) return items.classified;
+        if (chance <= 120) return items.restricted;
+        return items.milspec;
     }
 }
 
@@ -254,31 +278,38 @@ class GloveCase extends Case {
                 price: 15000,
                 weaponName: "Sport Gloves",
                 weapon: "Glove",
-                img: ""
+                img: "",
+                rarity: "covert"
             },
+
             classified: {
                 skinName: "Specialist Gloves | Crimson Kimono",
                 floatVal: Math.pow(Math.random(), 2),
                 price: 9000,
                 weaponName: "Specialist Gloves",
                 weapon: "Glove",
-                img: ""
+                img: "",
+                rarity: "classified"
             },
+
             restricted: {
                 skinName: "Driver Gloves | Overtake",
                 floatVal: Math.pow(Math.random(), 2),
                 price: 4000,
                 weaponName: "Driver Gloves",
                 weapon: "Glove",
-                img: ""
+                img: "",
+                rarity: "restricted"
             },
+
             milspec: {
                 skinName: "Hand Wraps | Leather",
                 floatVal: Math.pow(Math.random(), 2),
                 price: 1200,
                 weaponName: "Hand Wraps",
                 weapon: "Glove",
-                img: ""
+                img: "",
+                rarity: "milspec"
             }
         }, 100, "glove_case");
     }
@@ -287,9 +318,9 @@ class GloveCase extends Case {
         const chance = this._randomInt(1, 1000);
         const items = this._getItems();
 
-        if (chance <= 7) return items.covert;       // 0.7%
-        if (chance <= 35) return items.classified;  // 2.8%
-        if (chance <= 150) return items.restricted; // 11.5%
-        return items.milspec;                       // ~85%
+        if (chance <= 7) return items.covert;
+        if (chance <= 35) return items.classified;
+        if (chance <= 150) return items.restricted;
+        return items.milspec;
     }
 }

@@ -120,7 +120,8 @@ class Storage{
                 skin.floatVal,
                 skin.price,
                 new Weapon(skin.weaponName, skin.weapon),
-                skin.image || skin.img
+                skin.image || skin.img,
+                skin.rarity
             )
         );
         this._save();
@@ -142,7 +143,8 @@ class Storage{
                 item.floatVal,
                 item.price,
                 new Weapon(item.weaponName, item.weapon),
-                item.image || item.img
+                item.image || item.img,
+                item.rarity
             ));
             
             this.#cases = data.cases;
@@ -161,7 +163,8 @@ class Storage{
                 price: skin.getPrice(),
                 weaponName: skin.getWeapon().getName(),
                 weapon: skin.getWeapon().getType(),
-                image: skin.getImage()
+                image: skin.getImage(),
+                rarity: skin.getRarity()
             })),
             cases: this.#cases
         };
@@ -211,7 +214,7 @@ class Storage{
         weaponName: skin.getWeapon().getName(),
         weapon:     skin.getWeapon().getType(),
         img:        skin.getImage(),
-        rarity:     'milspec'
+        rarity:     skin.getRarity()
     }));
 }
 
@@ -226,14 +229,16 @@ class Skin{
     #price;
     #weapon;
     #image;
+    #rarity;
 
 
-    constructor(skinName, floatVal, price, weapon, image){
+    constructor(skinName, floatVal, price, weapon, image, rarity){
         this.#skinName = skinName;
         this.#floatVal = floatVal;
         this.#price = price;
         this.#weapon = weapon;
         this.#image = image;
+        this.#rarity = rarity;
     }
 
     getSkinName(){return this.#skinName;}
@@ -241,6 +246,7 @@ class Skin{
     getFloat(){return this.#floatVal}
     getImage(){return this.#image;}
     getWeapon(){return this.#weapon;}
+    getRarity(){return this.#rarity}
 
 }
 
