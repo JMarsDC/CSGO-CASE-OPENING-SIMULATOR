@@ -260,53 +260,67 @@ main {
     }
 }
 
+/* ── RAFFLE ROLLER / CASE OPENING ── */
+.needle {
 	border: none;
 	z-index: 12222225;
 	width: 5px;
 	height: 100%;
 	left: 50%;
-	background: #d16266;
+	background: var(--red);
+	box-shadow: 0 0 8px rgba(255, 74, 107, 0.4);
 }
+
 .item {
-    display: inline-block;
-    flex: 0 0 var(--item-width);
-    margin: 4px 0 0.5px 5px;
-    width: var(--item-width);
-    height: calc(var(--roller-height) - 4px);
-    border: 1px solid #70677c;
-    background: #14202b;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
+	display: inline-block;
+	flex: 0 0 var(--item-width);
+	margin: 4px 0 0.5px 5px;
+	width: 85px;
+	height: 88px;
+	border: 1px solid var(--border);
+	background: var(--panel);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	border-radius: 2px;
+	transition: background-color .2s, transform .15s;
 }
+
 .class_red_item {
-	border-bottom: 4px solid #EB4B4B;
+	border-bottom: 4px solid var(--red);
+	box-shadow: inset 0 0 8px rgba(255, 74, 107, 0.2);
 }
+
 img {
 	border: 0;
 	vertical-align: middle;
 }
+
 .winning-item {
-	border: 2px solid #66b233;
+	border: 2px solid var(--green);
+	border-bottom: 4px solid var(--green);
 	position: relative;
 	top: -1px;
-    	border-bottom: 4px solid #66b233;
+	box-shadow: 0 0 16px var(--green-glow);
 }
+
 .inventory {
 	margin: 0 auto;
 	width: 100%;
 	max-width: 960px;
-	padding: 10px 15px 6px;
+	padding: 16px;
 	height: auto;
 	display: flex;
 	flex-wrap: wrap;
-	gap: 6px;
+	gap: 8px;
 	justify-content: center;
 	align-items: flex-start;
 	box-sizing: border-box;
-	border: 2px solid #1c3344;
-	background: #0e1a23;
+	border: 1px solid var(--border);
+	background: var(--panel);
+	border-radius: 4px;
 }
+
 .inventory > .item {
 	flex: 0 0 var(--item-width);
 	width: var(--item-width);
@@ -315,16 +329,64 @@ img {
 	cursor: pointer;
 	margin: 0;
 }
+
 .inventory > .item:hover {
 	background-size: 90%;
-	background-color: #182a38;
+	background-color: var(--panel2);
+	border-color: var(--border-lit);
 }
+
 .inventory > .item:active {
 	transform: translateY(-2px);
-	border: 2px solid #356d27;
-	border-bottom: 4px solid #356d27;
+	border-color: var(--green);
+	border-bottom: 4px solid var(--green);
 }
+
 /* Ensure red-class styling shows inside inventory (higher specificity) */
 .inventory > .item.class_red_item {
-	border-bottom: 4px solid #EB4B4B;
+	border-bottom: 4px solid var(--red);
+}
+
+.raffle-roller {
+	height: 100px;
+	position: relative;
+	margin: 60px auto 30px;
+	width: 100%;
+	max-width: 900px;
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+
+.raffle-roller-holder {
+	position: relative;
+	height: 100px;
+	width: 100%;
+	overflow: hidden;
+	border-radius: 4px;
+	border: 1px solid var(--border);
+	background: linear-gradient(90deg, var(--panel) 0%, var(--panel2) 50%, var(--panel) 100%);
+	box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.6);
+}
+
+.raffle-roller-container {
+	width: 9999999999999999999px;
+	max-width: 999999999999999999px;
+	height: 100px;
+	background: transparent;
+	margin-left: 0;
+	transition: all 8s cubic-bezier(.08,.6,0,1);
+	display: flex;
+	align-items: center;
+}
+
+.raffle-roller-holder::before {
+	content: "";
+	position: absolute;
+	border: none;
+	z-index: 12222225;
+	width: 5px;
+	height: 100%;
+	left: 50%;
+	background: var(--red);
+	box-shadow: 0 0 12px var(--red), 0 0 24px rgba(255, 74, 107, 0.5);
 }

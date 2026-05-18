@@ -4,21 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knife Case</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="OpenCase.css">
+    <link rel="stylesheet" href="OpenCaseRoll.css">
 </head>
 <body>
-    <a href="../SkinStorage/GunSkins.html"><button> View Gun Skins </button></a>
+
+<header>
+    <div class="header-left">
+        <a class="back-btn" href="OpenCase.html">Back</a>
+        <span class="site-title">KNIFE <span>CASE</span></span>
+    </div>
+    <a class="view-skins-btn" href="../SkinStorage/GunSkins.html">View Gun Skins</a>
+</header>
+
+<main>
+    <div class="result-section">
+        <div class="result-text">Your winning is <span id="rolled">rolling</span></div>
+        <div class="result-status">Opening case...</div>
+    </div>
+
     <div class="raffle-roller">
-	<div class="raffle-roller-holder">
-        <div class="raffle-roller-container">
-		</div>
-	</div>
-</div>
-<center><span style="font-size: 25px;">You winning is <span style="color: green;" id="rolled">rolling</span>
-<br>
-<button onclick="generate();">go</button>
-<br>
-<div class="inventory"></div>
+        <div class="raffle-roller-holder">
+            <div class="raffle-roller-container"></div>
+        </div>
+    </div>
+
+    <button class="action-btn" onclick="generate();">Open Result</button>
+
+    <div class="inventory"></div>
+</main>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../../Menu/MenuLogic.js"></script>
 <script src="../../Menu/UserInfo.js"></script>
@@ -27,5 +43,7 @@
 <script>
     setCase(new KnifeCase())
 </script>
+
 </body>
+</html>
 </html>

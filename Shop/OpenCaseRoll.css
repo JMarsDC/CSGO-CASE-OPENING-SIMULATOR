@@ -1,0 +1,147 @@
+/* ── CASE OPENING PAGE LAYOUT ── */
+body { 
+    display: flex; 
+    flex-direction: column; 
+}
+
+/* ── HEADER ── */
+header {
+    position: sticky; 
+    top: 0; 
+    z-index: 100;
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    padding: 0 28px;
+    height: 58px;
+    background: rgba(10,12,15,.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+}
+
+.header-left { 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+}
+
+.back-btn {
+    display: flex; 
+    align-items: center; 
+    gap: 6px;
+    color: var(--muted); 
+    text-decoration: none;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px; 
+    letter-spacing: .08em; 
+    text-transform: uppercase;
+    transition: color .2s;
+}
+
+.back-btn:hover { 
+    color: var(--green); 
+}
+
+.back-btn::before { 
+    content: '←'; 
+    font-size: 14px; 
+}
+
+.site-title {
+    font-size: 18px; 
+    font-weight: 800; 
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--text-bright);
+}
+
+.site-title span { 
+    color: var(--green); 
+}
+
+/* ── MAIN CONTENT ── */
+main {
+    position: relative; 
+    z-index: 1;
+    flex: 1;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.result-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.result-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-bright);
+    margin-bottom: 12px;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.result-text span {
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: .1em;
+}
+
+.result-status {
+    font-size: 14px;
+    color: var(--muted);
+    font-family: 'Share Tech Mono', monospace;
+}
+
+/* ── BUTTONS ── */
+.action-btn {
+    padding: 12px 28px;
+    background: var(--green-dim);
+    border: 1px solid rgba(57,255,138,.3);
+    border-radius: 3px;
+    color: var(--green);
+    font-family: 'Oxanium', sans-serif;
+    font-size: 12px; 
+    font-weight: 700;
+    letter-spacing: .1em; 
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background .2s, box-shadow .2s, color .2s;
+    margin: 20px 0;
+}
+
+.action-btn:hover {
+    background: var(--green);
+    color: var(--bg);
+    box-shadow: 0 0 14px var(--green-glow);
+}
+
+.action-btn:active { 
+    transform: scale(.97); 
+}
+
+.view-skins-btn {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    padding: 8px 16px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text);
+    font-family: 'Oxanium', sans-serif;
+    font-size: 11px; 
+    font-weight: 700;
+    letter-spacing: .08em; 
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color .2s, color .2s;
+}
+
+.view-skins-btn:hover {
+    border-color: var(--green);
+    color: var(--green);
+}
