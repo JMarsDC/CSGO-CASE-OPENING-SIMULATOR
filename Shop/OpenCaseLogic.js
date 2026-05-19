@@ -14,6 +14,8 @@ function generate() {
 		transition: 'none',
 		transform: 'translateX(0px)'
 	}).html('');
+	
+	$('.inventory').html(''); // Clear previous items
 
 	if (!currentCase) {
 		console.error('No case set for OpenCaseLogic')
@@ -29,24 +31,17 @@ function generate() {
 	player.getStorage().setCounter(currentCase.getName());
 
 	const allItems = Object.values(currentCase.getItems())
-	const defaultImg = allItems[0]?.img || ''
+	const reward = currentCase.rollItem() // roll once
 
 	for (var i = 0; i < 101; i++) {
-		var randed = randomInt(1, 1000)
-		var img = defaultImg
-		if (randed < 50 && allItems.length > 0) {
-			img = allItems[allItems.length - 1].img
-		} else if (randed > 500 && allItems.length > 1) {
-			img = allItems[Math.floor(allItems.length / 2)].img
-		}
-		var element = '<div id="CardNumber'+i+'" class="item class_red_item" style="background-image:url('+"../"+img+');"></div>';
-		$(element).appendTo('.raffle-roller-container');
+		var item = (i === 80) ? reward : currentCase.rollItem() // place reward at index 80
+		var element = '<div id="CardNumber'+i+'" class="item rarity-'+item.rarity+'" style="background-image:url(../'+item.img+');"></div>'
+		$(element).appendTo('.raffle-roller-container')
 	}
 
-    setTimeout(function() {
-    var reward = currentCase.rollItem();
-    goRoll(reward.skinName, reward.img, reward);
-}, 500);
+	setTimeout(function() {
+		goRoll(reward.skinName, reward.img, reward)
+	}, 500);
 
 }
 

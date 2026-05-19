@@ -58,14 +58,6 @@ class Player{
     getStorage() {return this.#inventory;}
     deductBalance(amount) {this.#balance -= amount; this._save();}
     addBalance(amount) {this.#balance += amount; this._save();}
-
-    
-
-    getName() {return this.#name;}
-    getBalance() {return this.#balance;}
-    getStorage() {return this.#inventory;}
-    deductBalance(amount) {this.#balance -= amount; this._save();}
-    addBalance(amount) {this.#balance += amount; this._save();}
 }
 
 class Storage{
@@ -129,14 +121,21 @@ class Storage{
 
     _load(){
         let saved = localStorage.getItem(getPlayerStorageKey(this.#owner));
+
         if (!saved) {
-            // fallback to old storage key for compatibility
-            saved = localStorage.getItem("playerStorage");
+            console.warn(`No saved data for player ${this.#owner}`);
+            return false;
         }
-        if (!saved) return false;
 
         try {
             const data = JSON.parse(saved);
+            console.log(`Raw data from localStorage for ${this.#owner}:`, data);
+            
+            // Validate data structure
+            if (!data.skins || !Array.isArray(data.skins)) {
+                console.error("Invalid skins data structure");
+                return false;
+            }
             
             this.#skins = data.skins.map(item => new Skin(
                 item.skinName,
@@ -147,7 +146,8 @@ class Storage{
                 item.rarity
             ));
             
-            this.#cases = data.cases;
+            this.#cases = data.cases || this.#cases;
+            console.log(`Loaded ${this.#skins.length} skins for ${this.#owner}`);
             return true;
         } catch (error) {
             console.error("Failed to load player storage:", error);
@@ -169,6 +169,7 @@ class Storage{
             cases: this.#cases
         };
 
+        console.log(`Saving ${data.skins.length} skins for ${this.#owner}:`, data.skins.length === 0 ? '(empty)' : data.skins.map(s => s.skinName));
         localStorage.setItem(getPlayerStorageKey(this.#owner), JSON.stringify(data));
     }
 
