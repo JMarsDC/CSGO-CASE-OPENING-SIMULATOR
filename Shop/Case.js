@@ -54,7 +54,7 @@ class Kilowatt extends Case {
                 price: 3200,
                 weaponName: "AK-47",
                 weapon: "Gun",
-                img: "",
+                img: "../images/Inheritance.png",
                 rarity: "covert"
             },
 
@@ -64,7 +64,7 @@ class Kilowatt extends Case {
                 price: 900,
                 weaponName: "AWP",
                 weapon: "Gun",
-                img: "",
+                img: "../images/ChromeCannon.png",
                 rarity: "classified"
             },
 
@@ -74,7 +74,7 @@ class Kilowatt extends Case {
                 price: 250,
                 weaponName: "M4A1-S",
                 weapon: "Gun",
-                img: "",
+                img: "../images/BlackLotus.png",
                 rarity: "restricted"
             },
 
@@ -84,7 +84,7 @@ class Kilowatt extends Case {
                 price: 45,
                 weaponName: "MP7",
                 weapon: "Gun",
-                img: "",
+                img: "../images/JustSmile.png",
                 rarity: "milspec"
             }
         }, 30, "weapon_case");

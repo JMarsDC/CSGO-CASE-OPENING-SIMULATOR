@@ -13,6 +13,10 @@
     --text:        #b8c4d8;
     --text-bright: #dce8f8;
     --muted:       #454e68;
+    --covert:      #eb4b4b;
+    --classified:  #d32ce6;
+    --restricted:  #4b69ff;
+    --milspec:     #5e98d9;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -286,10 +290,22 @@ main {
 	transition: background-color .2s, transform .15s;
 }
 
-.class_red_item {
-	border-bottom: 4px solid var(--red);
-	box-shadow: inset 0 0 8px rgba(255, 74, 107, 0.2);
+.rarity-covert{ 	
+    border-bottom: 4px solid var(--covert);
+    box-shadow: inset 0 0 8px rgba(255, 74, 107, 0.2); 
 }
+.rarity-classified{ 	
+    border-bottom: 4px solid var(--classified);
+	box-shadow: inset 0 0 8px rgba(255, 74, 107, 0.2); 
+}
+.rarity-restricted{ 
+    border-bottom: 4px solid var(--restricted);
+	box-shadow: inset 0 0 8px rgba(255, 74, 107, 0.2);
+ }
+.rarity-milspec{ 
+    border-bottom: 4px solid var(--milspec);
+	box-shadow: inset 0 0 8px rgba(255, 74, 107, 0.2);
+ }
 
 img {
 	border: 0;
