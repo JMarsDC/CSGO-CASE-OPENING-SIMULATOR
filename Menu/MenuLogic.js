@@ -177,24 +177,23 @@ class Storage{
     }
 
     _populate(){
-        this.#skins.push(
-            new Skin("RubyRed", 0.002, 3000, 
-                new Weapon("AK47","Gun"), 
-                "images/ak47_ruby.png")
-        );
+    this.#skins.push(
+        new Skin("RubyRed", 0.002, 3000, 
+            new Weapon("AK47","Gun"), 
+            "images/ak47_ruby.png", "covert")
+    );
 
-        
-        this.#skins.push(
-            new Skin("EmeraldGreen", 0.123, 4500, 
-                new Weapon("M4A1","Gun"), 
-                "images/m4a1_emerald.png")
-        );
+    this.#skins.push(
+        new Skin("EmeraldGreen", 0.123, 4500, 
+            new Weapon("M4A1","Gun"), 
+            "images/m4a1_emerald.png", "classified")
+    );
 
-        this.#skins.push(
-            new Skin("Talon", 0.256, 2400, 
-                new Weapon("Deagle","Gun"), 
-                "images/deagle_talon.png")
-        );
+    this.#skins.push(
+        new Skin("Talon", 0.256, 2400, 
+            new Weapon("Deagle","Gun"), 
+            "images/deagle_talon.png", "restricted")
+    );
     }
 
     getGunSkins(){ 

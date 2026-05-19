@@ -3,11 +3,11 @@
 // JANELLE WAS HERE
 
 const SHOP_SKINS = [
-    { skinName: "Asiimov",          weaponName: "AWP",    weapon: "Gun", floatVal: 0.2412, price: 1200, rarity: "classified", img: "/images/AWP_Asiimov.png" },
-    { skinName: "Hyper Beast",      weaponName: "M4A4",   weapon: "Gun", floatVal: 0.0823, price: 800,  rarity: "classified", img: "/images/M4A4_Hyperbeast.png" },
-    { skinName: "Redline",          weaponName: "AK-47",  weapon: "Gun", floatVal: 0.1547, price: 220,  rarity: "restricted", img: "/images/AK-47_Redline.png" },
-    { skinName: "Orion",            weaponName: "AWP",    weapon: "Gun", floatVal: 0.0411, price: 3500, rarity: "covert",     img: "/images/AWP_Orion.png" },
-    { skinName: "Hot Rod",          weaponName: "M4A1-S", weapon: "Gun", floatVal: 0.0134, price: 450,  rarity: "milspec",    img: "/images/M4A1-S_hotrod.png" }
+    { skinName: "Asiimov",          weaponName: "AWP",    weapon: "Gun", floatVal: 0.2412, price: 1200, rarity: "classified", img: "images/AWP_Asiimov.png" },
+    { skinName: "Hyper Beast",      weaponName: "M4A4",   weapon: "Gun", floatVal: 0.0823, price: 800,  rarity: "classified", img: "images/M4A4_Hyperbeast.png" },
+    { skinName: "Redline",          weaponName: "AK-47",  weapon: "Gun", floatVal: 0.1547, price: 220,  rarity: "restricted", img: "images/AK-47_Redline.png" },
+    { skinName: "Orion",            weaponName: "AWP",    weapon: "Gun", floatVal: 0.0411, price: 3500, rarity: "covert",     img: "images/AWP_Orion.png" },
+    { skinName: "Hot Rod",          weaponName: "M4A1-S", weapon: "Gun", floatVal: 0.0134, price: 450,  rarity: "milspec",    img: "images/M4A1-S_hotrod.png" }
 ];
 
 function updateBalanceDisplay() {
