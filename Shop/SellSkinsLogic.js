@@ -1,6 +1,8 @@
+// JANELLE WAS HERE
+
 // Skibidi Rizzler 67 89 1011 SellSkinsLogic.js
 
-// 67% (haha funny number) market value ang pag sell sa skins puede nato ilisan but mao lang ni para fair
+// 67% (haha funny n`umber) market value ang pag sell sa skins puede nato ilisan but mao lang ni para fair
 function calculateSellPrice(marketPrice) {
     return Math.floor(marketPrice * 0.67);
 }

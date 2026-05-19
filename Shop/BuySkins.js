@@ -1,3 +1,6 @@
+//connected to player.js for balance and storage management
+//code from BuySkins.html is split into this file for better organization and readability
+// JANELLE WAS HERE
 
 const SHOP_SKINS = [
     { skinName: "Asiimov",          weaponName: "AWP",    weapon: "Gun", floatVal: 0.2412, price: 1200, rarity: "classified", img: "/images/AWP_Asiimov.png" },
