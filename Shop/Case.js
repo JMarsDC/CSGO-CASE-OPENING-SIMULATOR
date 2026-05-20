@@ -51,7 +51,7 @@ class Kilowatt extends Case {
             covert: {
                 skinName: "Inheritance",
                 floatVal: Math.pow(Math.random(), 2),
-                price: 3200,
+                price: 1800,
                 weaponName: "AK-47",
                 weapon: "Gun",
                 img: "../images/Inheritance.png",
@@ -61,7 +61,7 @@ class Kilowatt extends Case {
             classified: {
                 skinName: "Chrome Cannon",
                 floatVal: Math.pow(Math.random(), 2),
-                price: 900,
+                price: 500,
                 weaponName: "AWP",
                 weapon: "Gun",
                 img: "../images/ChromeCannon.png",
@@ -71,7 +71,7 @@ class Kilowatt extends Case {
             restricted: {
                 skinName: "Black Lotus",
                 floatVal: Math.pow(Math.random(), 2),
-                price: 250,
+                price: 140,
                 weaponName: "M4A1-S",
                 weapon: "Gun",
                 img: "../images/BlackLotus.png",
@@ -81,13 +81,13 @@ class Kilowatt extends Case {
             milspec: {
                 skinName: "Just Smile",
                 floatVal: Math.pow(Math.random(), 2),
-                price: 45,
+                price: 25,
                 weaponName: "MP7",
                 weapon: "Gun",
                 img: "../images/JustSmile.png",
                 rarity: "milspec"
             }
-        }, 30, "weapon_case");
+        }, 90, "weapon_case");
     }
 
     rollItem() {
@@ -107,7 +107,7 @@ class Revolution extends Case {
             covert: {
                 skinName: "Printstream",
                 floatVal: Math.pow(Math.random(), 2),
-                price: 3100,
+                price: 1750,
                 weaponName: "M4A1-S",
                 weapon: "Gun",
                 img: "../images/Printstream.png",
@@ -117,7 +117,7 @@ class Revolution extends Case {
             classified: {
                 skinName: "Boost Protocol",
                 floatVal: Math.pow(Math.random(), 2),
-                price: 950,
+                price: 520,
                 weaponName: "Desert Eagle",
                 weapon: "Gun",
                 img: "../images/BoostProtocol.png",
@@ -127,7 +127,7 @@ class Revolution extends Case {
             restricted: {
                 skinName: "Emphorosaur",
                 floatVal: Math.pow(Math.random(), 2),
-                price: 260,
+                price: 145,
                 weaponName: "M4A1-S",
                 weapon: "Gun",
                 img: "../images/Emphorosaur.png",
@@ -137,13 +137,13 @@ class Revolution extends Case {
             milspec: {
                 skinName: "Featherweight",
                 floatVal: Math.pow(Math.random(), 2),
-                price: 55,
+                price: 28,
                 weaponName: "MP9",
                 weapon: "Gun",
                 img: "../images/Featherweight.png",
                 rarity: "milspec"
             }
-        }, 30, "weapon_case");
+        }, 95, "weapon_case");
     }
 
     rollItem() {
@@ -163,7 +163,7 @@ class DreamsAndNightmares extends Case {
             covert: {
                 skinName: "Nightwish",
                 floatVal: Math.pow(Math.random(), 2),
-                price: 3400,
+                price: 1900,
                 weaponName: "AK-47",
                 weapon: "Gun",
                 img: "../images/Nightwish.png",
@@ -173,7 +173,7 @@ class DreamsAndNightmares extends Case {
             classified: {
                 skinName: "Melondrama",
                 floatVal: Math.pow(Math.random(), 2),
-                price: 880,
+                price: 480,
                 weaponName: "Dual Berettas",
                 weapon: "Gun",
                 img: "../images/Melondrama.png",
@@ -183,7 +183,7 @@ class DreamsAndNightmares extends Case {
             restricted: {
                 skinName: "Dream Glade",
                 floatVal: Math.pow(Math.random(), 2),
-                price: 240,
+                price: 135,
                 weaponName: "G3SG1",
                 weapon: "Gun",
                 img: "../images/DreamGlade.png",
@@ -193,13 +193,13 @@ class DreamsAndNightmares extends Case {
             milspec: {
                 skinName: "Ensnared",
                 floatVal: Math.pow(Math.random(), 2),
-                price: 50,
+                price: 26,
                 weaponName: "MAC-10",
                 weapon: "Gun",
                 img: "../images/Ensnared.png",
                 rarity: "milspec"
             }
-        }, 30, "weapon_case");
+        }, 100, "weapon_case");
     }
 
     rollItem() {
@@ -219,7 +219,7 @@ class KnifeCase extends Case {
             covert: {
                 skinName: "Karambit | Fade",
                 floatVal: Math.pow(Math.random(), 2),
-                price: 12000,
+                price: 7000,
                 weaponName: "Karambit",
                 weapon: "Knife",
                 img: "../images/Fade.png",
@@ -229,7 +229,7 @@ class KnifeCase extends Case {
             classified: {
                 skinName: "M9 Bayonet | Slaughter",
                 floatVal: Math.pow(Math.random(), 2),
-                price: 8000,
+                price: 4500,
                 weaponName: "M9 Bayonet",
                 weapon: "Knife",
                 img: "../images/Slaughter.png",
@@ -239,7 +239,7 @@ class KnifeCase extends Case {
             restricted: {
                 skinName: "Butterfly Knife | Case Hardened",
                 floatVal: Math.pow(Math.random(), 2),
-                price: 5000,
+                price: 2600,
                 weaponName: "Butterfly Knife",
                 weapon: "Knife",
                 img: "../images/CaseHardened.png",
@@ -249,13 +249,13 @@ class KnifeCase extends Case {
             milspec: {
                 skinName: "Gut Knife | Safari Mesh",
                 floatVal: Math.pow(Math.random(), 2),
-                price: 1500,
+                price: 700,
                 weaponName: "Gut Knife",
                 weapon: "Knife",
                 img: "../images/SafariMesh.png",
                 rarity: "milspec"
             }
-        }, 100, "knife_case");
+        }, 450, "knife_case");
     }
 
     rollItem() {
@@ -275,7 +275,7 @@ class GloveCase extends Case {
             covert: {
                 skinName: "Sport Gloves | Pandora's Box",
                 floatVal: Math.pow(Math.random(), 2),
-                price: 15000,
+                price: 8500,
                 weaponName: "Sport Gloves",
                 weapon: "Glove",
                 img: "../images/Pandora.png",
@@ -285,7 +285,7 @@ class GloveCase extends Case {
             classified: {
                 skinName: "Specialist Gloves | Crimson Kimono",
                 floatVal: Math.pow(Math.random(), 2),
-                price: 9000,
+                price: 5200,
                 weaponName: "Specialist Gloves",
                 weapon: "Glove",
                 img: "../images/CrimsonKimono.png",
@@ -295,7 +295,7 @@ class GloveCase extends Case {
             restricted: {
                 skinName: "Driver Gloves | Overtake",
                 floatVal: Math.pow(Math.random(), 2),
-                price: 4000,
+                price: 2300,
                 weaponName: "Driver Gloves",
                 weapon: "Glove",
                 img: "../images/Overtake.png",
@@ -305,13 +305,13 @@ class GloveCase extends Case {
             milspec: {
                 skinName: "Hand Wraps | Leather",
                 floatVal: Math.pow(Math.random(), 2),
-                price: 1200,
+                price: 650,
                 weaponName: "Hand Wraps",
                 weapon: "Glove",
                 img: "../images/Leather.png",
                 rarity: "milspec"
             }
-        }, 100, "glove_case");
+        }, 550, "glove_case");
     }
 
     rollItem() {
