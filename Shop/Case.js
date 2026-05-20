@@ -108,39 +108,39 @@ class Revolution extends Case {
                 skinName: "Printstream",
                 floatVal: Math.pow(Math.random(), 2),
                 price: 3100,
-                weaponName: "AK-47",
+                weaponName: "M4A1-S",
                 weapon: "Gun",
-                img: "",
+                img: "../images/Printstream.png",
                 rarity: "covert"
             },
 
             classified: {
-                skinName: "Wildfire Protocol",
+                skinName: "Boost Protocol",
                 floatVal: Math.pow(Math.random(), 2),
                 price: 950,
                 weaponName: "Desert Eagle",
                 weapon: "Gun",
-                img: "",
+                img: "../images/BoostProtocol.png",
                 rarity: "classified"
             },
 
             restricted: {
-                skinName: "Circuit Breaker",
+                skinName: "Emphorosaur",
                 floatVal: Math.pow(Math.random(), 2),
                 price: 260,
                 weaponName: "M4A1-S",
                 weapon: "Gun",
-                img: "",
+                img: "../images/Emphorosaur.png",
                 rarity: "restricted"
             },
 
             milspec: {
-                skinName: "Reboot",
+                skinName: "Featherweight",
                 floatVal: Math.pow(Math.random(), 2),
                 price: 55,
                 weaponName: "MP9",
                 weapon: "Gun",
-                img: "",
+                img: "../images/Featherweight.png",
                 rarity: "milspec"
             }
         }, 30, "weapon_case");
@@ -161,22 +161,22 @@ class DreamsAndNightmares extends Case {
     constructor() {
         super("DreamsAndNightmares", {
             covert: {
-                skinName: "Night Terror",
+                skinName: "Nightwish",
                 floatVal: Math.pow(Math.random(), 2),
                 price: 3400,
                 weaponName: "AK-47",
                 weapon: "Gun",
-                img: "",
+                img: "../images/Nightwish.png",
                 rarity: "covert"
             },
 
             classified: {
-                skinName: "Phantom Pulse",
+                skinName: "Melondrama",
                 floatVal: Math.pow(Math.random(), 2),
                 price: 880,
-                weaponName: "USP-S",
+                weaponName: "Dual Berettas",
                 weapon: "Gun",
-                img: "",
+                img: "../images/Melondrama.png",
                 rarity: "classified"
             },
 
@@ -184,19 +184,19 @@ class DreamsAndNightmares extends Case {
                 skinName: "Dream Glade",
                 floatVal: Math.pow(Math.random(), 2),
                 price: 240,
-                weaponName: "M4A1-S",
+                weaponName: "G3SG1",
                 weapon: "Gun",
-                img: "",
+                img: "../images/DreamGlade.png",
                 rarity: "restricted"
             },
 
             milspec: {
-                skinName: "Sleep Paralysis",
+                skinName: "Ensnared",
                 floatVal: Math.pow(Math.random(), 2),
                 price: 50,
-                weaponName: "P90",
+                weaponName: "MAC-10",
                 weapon: "Gun",
-                img: "",
+                img: "../images/Ensnared.png",
                 rarity: "milspec"
             }
         }, 30, "weapon_case");
@@ -222,7 +222,7 @@ class KnifeCase extends Case {
                 price: 12000,
                 weaponName: "Karambit",
                 weapon: "Knife",
-                img: "",
+                img: "../images/Fade.png",
                 rarity: "covert"
             },
 
@@ -232,7 +232,7 @@ class KnifeCase extends Case {
                 price: 8000,
                 weaponName: "M9 Bayonet",
                 weapon: "Knife",
-                img: "",
+                img: "../images/Slaughter.png",
                 rarity: "classified"
             },
 
@@ -242,7 +242,7 @@ class KnifeCase extends Case {
                 price: 5000,
                 weaponName: "Butterfly Knife",
                 weapon: "Knife",
-                img: "",
+                img: "../images/CaseHardened.png",
                 rarity: "restricted"
             },
 
@@ -252,7 +252,7 @@ class KnifeCase extends Case {
                 price: 1500,
                 weaponName: "Gut Knife",
                 weapon: "Knife",
-                img: "",
+                img: "../images/SafariMesh.png",
                 rarity: "milspec"
             }
         }, 100, "knife_case");
@@ -278,7 +278,7 @@ class GloveCase extends Case {
                 price: 15000,
                 weaponName: "Sport Gloves",
                 weapon: "Glove",
-                img: "",
+                img: "../images/Pandora.png",
                 rarity: "covert"
             },
 
@@ -288,7 +288,7 @@ class GloveCase extends Case {
                 price: 9000,
                 weaponName: "Specialist Gloves",
                 weapon: "Glove",
-                img: "",
+                img: "../images/CrimsonKimono.png",
                 rarity: "classified"
             },
 
@@ -298,7 +298,7 @@ class GloveCase extends Case {
                 price: 4000,
                 weaponName: "Driver Gloves",
                 weapon: "Glove",
-                img: "",
+                img: "../images/Overtake.png",
                 rarity: "restricted"
             },
 
@@ -308,7 +308,7 @@ class GloveCase extends Case {
                 price: 1200,
                 weaponName: "Hand Wraps",
                 weapon: "Glove",
-                img: "",
+                img: "../images/Leather.png",
                 rarity: "milspec"
             }
         }, 100, "glove_case");
