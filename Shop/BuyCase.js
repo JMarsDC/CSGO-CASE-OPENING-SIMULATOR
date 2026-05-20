@@ -1,10 +1,10 @@
 
 const SHOP_CASES = [
-    { caseName: "Kilowatt",         price: 30,   emoji: "⚡", caseID: "Kilowatt" },
-    { caseName: "Revolution",       price: 30,   emoji: "🔥", caseID: "Revolution" },
-    { caseName: "Dreams & Nightmares", price: 30, emoji: "👻", caseID: "DreamsNightmare" },
-    { caseName: "Knife",            price: 50,   emoji: "🔪", caseID: "Knife" },
-    { caseName: "Glove",            price: 50,   emoji: "🧤", caseID: "Glove" }
+    { caseName: "Kilowatt",         price: 30,   img: "../images/kilowattCase.png", caseID: "Kilowatt" },
+    { caseName: "Revolution",       price: 30,   img: "../images/revolutionCase.png", caseID: "Revolution" },
+    { caseName: "Dreams & Nightmares", price: 30, img: "../images/dreamsAndNightmares.png", caseID: "DreamsNightmare" },
+    { caseName: "Knife",            price: 50,   img: "../images/knifeCase.png", caseID: "Knife" },
+    { caseName: "Glove",            price: 50,   img: "../images/gloveCase.png", caseID: "Glove" }
 ];
 
 function updateBalanceDisplay() {
@@ -57,7 +57,7 @@ function renderShop() {
         div.className = 'case-card';
         div.innerHTML = `
             <div class="case-img-area">
-                <span>${caseItem.emoji}</span>
+                <img src="${caseItem.img}" alt="${caseItem.caseName}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
             </div>
             <div class="case-body">
                 <div class="case-name">${caseItem.caseName}</div>

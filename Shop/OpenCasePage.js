@@ -1,9 +1,9 @@
 const AVAILABLE_CASES = [
-    { name: "Kilowatt",         emoji: "⚡", caseID: "Kilowatt" },
-    { name: "Revolution",       emoji: "🔥", caseID: "Revolution" },
-    { name: "Dreams & Nightmares", emoji: "👻", caseID: "DreamsNightmare" },
-    { name: "Knife",            emoji: "🔪", caseID: "Knife" },
-    { name: "Glove",            emoji: "🧤", caseID: "Glove" }
+    { name: "Kilowatt",         img: "../images/kilowattCase.png", caseID: "Kilowatt" },
+    { name: "Revolution",       img: "../images/revolutionCase.png", caseID: "Revolution" },
+    { name: "Dreams & Nightmares", img: "../images/dreamsAndNightmares.png", caseID: "DreamsNightmare" },
+    { name: "Knife",            img: "../images/knifeCase.png", caseID: "Knife" },
+    { name: "Glove",            img: "../images/gloveCase.png", caseID: "Glove" }
 ];
 
 function updateCaseCount() {
@@ -42,7 +42,7 @@ function renderCases() {
         div.className = 'case-card' + (count === 0 ? ' disabled' : '');
         div.innerHTML = `
             <div class="case-img-area">
-                <span>${caseItem.emoji}</span>
+                <img src="${caseItem.img}" alt="${caseItem.name}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
             </div>
             <div class="case-body">
                 <div class="case-name">${caseItem.name}</div>
