@@ -56,7 +56,7 @@ function goRoll(skinName, skinimg, reward) {
 	setTimeout(function() {
 		$('#CardNumber78').addClass('winning-item');
 		$('#rolled').html(skinName);
-		var win_element = "<div class='item rarity-"+reward.rarity+"' style='background-image:url(../"+skinimg+");'></div>";
+		var win_element = "<div class='item rarity-"+reward.rarity+"' style='background-image:url("+skinimg+");'></div>";
 		$(win_element).appendTo('.inventory');
 
         player.getStorage().addSkin(reward)
