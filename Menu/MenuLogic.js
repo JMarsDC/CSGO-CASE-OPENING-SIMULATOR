@@ -71,7 +71,7 @@ class Storage{
         this.#cases = {
             Kilowatt: 1,
             Revolution: 1,
-            DreamsNightmare: 1,
+            DreamsAndNightmares: 1,
             Knife: 1,
             Glove: 1
         };

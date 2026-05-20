@@ -2,7 +2,7 @@
 const SHOP_CASES = [
     { caseName: "Kilowatt",         price: 30,   img: "../images/kilowattCase.png", caseID: "Kilowatt" },
     { caseName: "Revolution",       price: 30,   img: "../images/revolutionCase.png", caseID: "Revolution" },
-    { caseName: "Dreams & Nightmares", price: 30, img: "../images/dreamsAndNightmares.png", caseID: "DreamsNightmare" },
+    { caseName: "Dreams & Nightmares", price: 30, img: "../images/dreamsAndNightmares.png", caseID: "DreamsAndNightmares" },
     { caseName: "Knife",            price: 50,   img: "../images/knifeCase.png", caseID: "Knife" },
     { caseName: "Glove",            price: 50,   img: "../images/gloveCase.png", caseID: "Glove" }
 ];

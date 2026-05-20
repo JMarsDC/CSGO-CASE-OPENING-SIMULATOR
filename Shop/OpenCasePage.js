@@ -1,7 +1,7 @@
 const AVAILABLE_CASES = [
     { name: "Kilowatt",         img: "../images/kilowattCase.png", caseID: "Kilowatt" },
     { name: "Revolution",       img: "../images/revolutionCase.png", caseID: "Revolution" },
-    { name: "Dreams & Nightmares", img: "../images/dreamsAndNightmares.png", caseID: "DreamsNightmare" },
+    { name: "Dreams & Nightmares", img: "../images/dreamsAndNightmares.png", caseID: "DreamsAndNightmares" },
     { name: "Knife",            img: "../images/knifeCase.png", caseID: "Knife" },
     { name: "Glove",            img: "../images/gloveCase.png", caseID: "Glove" }
 ];
@@ -49,8 +49,7 @@ function renderCases() {
                 <div class="case-count">
                     <span class="count-badge">${count}</span> in inventory
                 </div>
-                <button class="open-btn" ${count === 0 ? 'disabled' : ''} onclick="openCasePage
-                ('Open${caseItem.caseID.replace(/s$/, '')}Case.html', '${caseItem.name}')">
+                <button class="open-btn" ${count === 0 ? 'disabled' : ''} onclick="openCasePage('Open${caseItem.caseID}Case.html', '${caseItem.name}')">
                     ${count === 0 ? 'Not Available' : 'Open'}
                 </button>
             </div>
