@@ -338,9 +338,9 @@ img {
 }
 
 .inventory > .item {
-	flex: 0 0 var(--item-width);
-	width: var(--item-width);
-	height: calc(var(--roller-height) - 12px);
+	flex: 0 0 85px;
+	width: 85px;
+	height: 88px;
 	box-sizing: border-box;
 	cursor: pointer;
 	margin: 0;

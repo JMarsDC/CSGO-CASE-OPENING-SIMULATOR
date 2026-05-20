@@ -34,15 +34,9 @@ function generate() {
 	const reward = currentCase.rollItem() // roll once
 
 	for (var i = 0; i < 101; i++) {
-		var randed = randomInt(1, 1000)
-		var img = defaultImg
-		if (randed < 50 && allItems.length > 0) {
-			img = allItems[allItems.length - 1].img
-		} else if (randed > 500 && allItems.length > 1) {
-			img = allItems[Math.floor(allItems.length / 2)].img
-		}
-		var element = '<div id="CardNumber'+i+'" class="item class_red_item" style="background-image:url('+"../"+img+');"></div>';
-		$(element).appendTo('.raffle-roller-container');
+		var item = (i === 80) ? reward : currentCase.rollItem() // place reward at index 80
+		var element = '<div id="CardNumber'+i+'" class="item rarity-'+item.rarity+'" style="background-image:url(../'+item.img+');"></div>'
+		$(element).appendTo('.raffle-roller-container')
 	}
 
 	setTimeout(function() {
@@ -51,7 +45,7 @@ function generate() {
 
 }
 
-function goRoll(skin, skinimg, reward) {
+function goRoll(skinName, skinimg, reward) {
 	$('.raffle-roller-container').css({
 		transition: 'transform 8s cubic-bezier(.08,.6,0,1)'
 	});
@@ -61,8 +55,8 @@ function goRoll(skin, skinimg, reward) {
 
 	setTimeout(function() {
 		$('#CardNumber78').addClass('winning-item');
-		$('#rolled').html(skin);
-		var win_element = "<div class='item class_red_item' style='background-image: url("+skinimg+")'></div>";
+		$('#rolled').html(skinName);
+		var win_element = "<div class='item rarity-"+reward.rarity+"' style='background-image:url(../"+skinimg+");'></div>";
 		$(win_element).appendTo('.inventory');
 
         player.getStorage().addSkin(reward)

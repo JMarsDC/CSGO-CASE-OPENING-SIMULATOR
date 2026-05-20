@@ -159,7 +159,7 @@ class Revolution extends Case {
 
 class DreamsAndNightmares extends Case {
     constructor() {
-        super("DreamsNightmare", {
+        super("DreamsAndNightmares", {
             covert: {
                 skinName: "Night Terror",
                 floatVal: Math.pow(Math.random(), 2),
