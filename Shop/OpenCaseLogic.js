@@ -35,7 +35,7 @@ function generate() {
 
 	for (var i = 0; i < 101; i++) {
 		var item = (i === 80) ? reward : currentCase.rollItem() // place reward at index 80
-		var element = '<div id="CardNumber'+i+'" class="item rarity-'+item.rarity+'" style="background-image:url(../'+item.img+');"></div>'
+		var element = '<div id="CardNumber'+i+'" class="item rarity-'+item.rarity+'" style="background-image:url('+item.img+');"></div>'
 		$(element).appendTo('.raffle-roller-container')
 	}
 
